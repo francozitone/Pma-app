@@ -10,7 +10,7 @@
         /* --- STILI BASE --- */
         :root { --bg: #050505; --gold: #d4af37; --text-muted: #ccc; --warning: #ffcc00; }
         * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; scroll-behavior: smooth; }
-        body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; padding: 20px; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: 60px; }
+        body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; padding: 20px; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: 80px; }
         body::before { content:''; position:fixed; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at center, #1a1a1a 0%, #000 80%); z-index:-1; pointer-events:none; }
 
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
@@ -73,6 +73,25 @@
         
         .wa-btn { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 16px; font-weight: 600; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.2); margin-top: 20px; }
         
+        /* --- STILE CONCIERGE CHAT --- */
+        #chat-section {
+            position: fixed; bottom: 85px; right: 20px; left: 20px; 
+            background: rgba(10, 10, 10, 0.98); border: 1px solid var(--gold);
+            border-radius: 24px; z-index: 9999; display: none;
+            flex-direction: column; max-height: 70vh; box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            animation: slideDown 0.3s ease-out reverse;
+        }
+        .chat-header { padding: 18px; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; justify-content: space-between; align-items: center; }
+        #chat-messages { padding: 15px; overflow-y: auto; flex-grow: 1; font-size: 0.85rem; display: flex; flex-direction: column; gap: 12px; }
+        .message { padding: 12px 16px; border-radius: 18px; max-width: 85%; line-height: 1.4; }
+        .user-msg { background: var(--gold); color: black; align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
+        .ai-msg { background: rgba(255,255,255,0.08); color: white; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid rgba(212,175,55,0.1); }
+        .chat-input-area { padding: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); }
+        #chat-input { background: rgba(255,255,255,0.05); border: 1px solid #333; color: white; padding: 12px; border-radius: 12px; flex-grow: 1; outline: none; font-family: 'Montserrat'; }
+        #chat-input:focus { border-color: var(--gold); }
+        .send-btn { background: var(--gold); border: none; width: 45px; height: 45px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .chat-trigger-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; cursor: pointer; z-index: 9998; box-shadow: 0 8px 25px rgba(212,175,55,0.3); }
+
         .lang-switch { text-align: center; margin-top: 40px; margin-bottom: 10px; }
         .lang-btn { background: none; border: none; color: #666; font-size: 0.75rem; padding: 5px 10px; cursor: pointer; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
         .lang-btn.active { color: var(--gold); font-weight: bold; }
@@ -148,79 +167,36 @@
                 <div><div class="label" data-i18n="btn_boat">Barca</div><div class="sub" data-i18n="btn_boat_sub">Boat Tours</div></div>
             </div>
         </div>
-
-        <div class="card full" onclick="toggleSection('taxi-section')">
-            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=800&auto=format&fit=crop');"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <div class="arrow">↓</div>
-                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-                    <div><div class="label" data-i18n="btn_taxi">Taxi & Transfer</div><div class="sub" data-i18n="btn_taxi_sub">City & Airport Service</div></div>
-                    <div style="font-size:2rem;">🚖</div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div id="tours-section" class="hidden-section">
         <h2 class="section-title" data-i18n="tours_title">Esplora Palermo</h2>
-        <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="tours_subtitle">Servizio autista privato. Clicca per i dettagli.</p>
-        
-        <details class="tour-item">
-            <summary><span data-i18n="tour1_title">Palermo City Tour</span> <span class="tour-price">€150</span></summary>
-            <div class="tour-content"><p data-i18n="tour1_desc">Dettagli...</p></div>
-        </details>
-        
-        <details class="tour-item">
-            <summary><span data-i18n="tour2_title">Monreale & Cefalù</span> <span class="tour-price">€200</span></summary>
-            <div class="tour-content"><p data-i18n="tour2_desc">Dettagli...</p></div>
-        </details>
-        
-        <details class="tour-item">
-            <summary><span data-i18n="tour3_title">Valle dei Templi</span> <span class="tour-price">€250</span></summary>
-            <div class="tour-content"><p data-i18n="tour3_desc">Dettagli...</p></div>
-        </details>
-
+        <div id="tours-list"></div>
         <div class="warning-box">
-            <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI AL PARTNER</span></div>
-            <p style="font-size:0.7rem; color:#aaa; margin-top:5px;" data-i18n="external_service_desc">Servizio esterno partner.</p>
+            <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI</span></div>
         </div>
-        <a href="https://wa.me/393505613327?text=Salve,%20info%20Tour%20Auto" class="wa-btn"><span style="font-size:1.2rem">💬</span> <span data-i18n="btn_chat_tour">Prenota Auto</span></a>
+        <a href="https://wa.me/393505613327?text=Salve,%20info%20Tour%20Auto" class="wa-btn">💬 <span data-i18n="btn_chat_tour">Prenota Auto</span></a>
     </div>
 
-    <div id="boat-section" class="hidden-section">
-        <h2 class="section-title" data-i18n="boat_title">Tour in Barca</h2>
-        <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="boat_subtitle">Scopri la costa dal mare. Skipper privato.</p>
-        
-        <details class="tour-item">
-            <summary><span data-i18n="boat1_title">Mondello & Capo Gallo</span> <span class="tour-price">€180</span></summary>
-            <div class="tour-content"><p data-i18n="boat1_desc">Dettagli...</p></div>
-        </details>
-
-        <details class="tour-item">
-            <summary><span data-i18n="boat2_title">Aperitivo al Tramonto</span> <span class="tour-price">€150</span></summary>
-            <div class="tour-content"><p data-i18n="boat2_desc">Dettagli...</p></div>
-        </details>
-
-        <div class="warning-box">
-            <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI AL PARTNER</span></div>
-            <p style="font-size:0.7rem; color:#aaa; margin-top:5px;" data-i18n="external_service_desc">Servizio esterno partner.</p>
+    <div id="chat-section">
+        <div class="chat-header">
+            <div class="logo" style="font-size: 0.8rem;">CONCIERGE PMA</div>
+            <div style="cursor:pointer; color:var(--gold); font-size:1.5rem;" onclick="toggleChat()">×</div>
         </div>
-        <a href="https://wa.me/393505613327?text=Salve,%20info%20Tour%20Barca" class="wa-btn"><span style="font-size:1.2rem">🚤</span> <span data-i18n="btn_chat_boat">Prenota Barca</span></a>
+        <div id="chat-messages">
+            <div class="message ai-msg">Ciao! Sono il tuo concierge. Come posso aiutarti oggi? Ti piacerebbe scoprire le novità della nostra galleria d'arte?</div>
+        </div>
+        <div style="padding: 0 15px 10px 15px; display: flex; gap: 8px; overflow-x: auto;">
+            <button onclick="quickMsg('Parlami della galleria')" style="white-space:nowrap; background:rgba(212,175,55,0.1); border:1px solid var(--gold); color:var(--gold); padding:6px 12px; border-radius:20px; font-size:0.7rem;">🎨 Galleria</button>
+            <button onclick="quickMsg('Come posso tornare a trovarvi?')" style="white-space:nowrap; background:rgba(212,175,55,0.1); border:1px solid var(--gold); color:var(--gold); padding:6px 12px; border-radius:20px; font-size:0.7rem;">📅 Torna ancora</button>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Chiedi qualcosa...">
+            <button class="send-btn" onclick="sendMessage()">➔</button>
+        </div>
     </div>
 
-    <div id="taxi-section" class="hidden-section">
-        <h2 class="section-title" data-i18n="taxi_title">Taxi Service</h2>
-        <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="taxi_desc">Trasferimenti aeroportuali e corse in città.</p>
-        
-        <div class="warning-box">
-            <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI AL PARTNER</span></div>
-             <p style="font-size:0.7rem; color:#aaa; margin-top:5px;" data-i18n="external_service_desc">Servizio esterno partner.</p>
-        </div>
-        <a href="https://wa.me/393505613327?text=Salve,%20richiesta%20Taxi" class="wa-btn" style="background:#333; border:1px solid #d4af37; color:#d4af37;">
-            <span style="font-size:1.2rem">🚖</span> <span data-i18n="btn_chat_taxi">Richiedi Taxi</span>
-        </a>
-    </div>
+    <div class="chat-trigger-btn" onclick="toggleChat()">🎨</div>
 
     <div class="lang-switch">
         <button class="lang-btn active" onclick="setLanguage('it')">IT</button> |
@@ -231,113 +207,72 @@
     <div class="footer"><a href="http://wifi.palermonamour.it/logout" class="logout" data-i18n="logout">Disconnetti Wi-Fi</a></div>
 
     <script>
+        // --- LOGICA UI ---
         function toggleSection(id) {
             document.querySelectorAll('.hidden-section').forEach(el => { if(el.id !== id) el.style.display = 'none'; });
             var section = document.getElementById(id);
-            if (section.style.display === "block") {
-                section.style.display = "none";
-            } else {
-                section.style.display = "block";
-                setTimeout(function() { section.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-            }
+            section.style.display = (section.style.display === "block") ? "none" : "block";
+            if(section.style.display === "block") setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 100);
         }
 
-        const translations = {
-            it: {
-                connected: "● Connesso", welcome: "Benvenuto", tagline: "Il tuo concierge digitale.",
-                btn_book: "Welcome Book", btn_book_sub: "Guida e Regole",
-                btn_bar: "Frigobar", btn_bar_sub: "Vini & Snack",
-                btn_art: "Art Gallery", btn_art_sub: "Esplora la collezione privata",
-                
-                btn_guest: "Guestbook", btn_guest_sub: "Lascia il tuo segno nel mondo",
+        function toggleChat() {
+            const chat = document.getElementById('chat-section');
+            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+        }
 
-                btn_tours: "Escursioni", btn_tours_sub: "Tour in Auto",
-                btn_boat: "Gite in Barca", btn_boat_sub: "Mare & Relax",
-                btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
-                
-                tours_title: "Tour in Auto", tours_subtitle: "Servizio autista privato.",
-                boat_title: "Escursioni in Barca", boat_subtitle: "Scopri la costa siciliana.",
-                taxi_title: "Servizio Taxi", taxi_desc: "Partner esterno di fiducia.",
+        // --- LOGICA CHAT N8N ---
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const msgContainer = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
 
-                btn_chat_tour: "Prenota Auto", btn_chat_boat: "Prenota Barca", btn_chat_taxi: "Richiedi Taxi",
+            msgContainer.innerHTML += `<div class="message user-msg">${text}</div>`;
+            input.value = '';
+            msgContainer.scrollTop = msgContainer.scrollHeight;
 
-                cash_only_warning: "PAGAMENTO SOLO CONTANTI AL PARTNER",
-                external_service_desc: "Servizio esterno erogato da partner di fiducia.",
-                logout: "Disconnetti Wi-Fi",
-                
-                // DETTAGLI ESEMPIO
-                tour1_title: "Palermo City Tour", tour1_desc: "<strong>Partenza:</strong> 09:00 - 13:00<br>Tour completo del centro storico.",
-                tour2_title: "Monreale & Cefalù", tour2_desc: "<strong>Durata:</strong> Giornata Intera<br>Arte Normanna e mare.",
-                tour3_title: "Valle dei Templi", tour3_desc: "<strong>Durata:</strong> Giornata Intera<br>Viaggio nella storia Greca.",
-                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Partenza:</strong> 10:00<br>Bagno e snorkeling inclusi.",
-                boat2_title: "Aperitivo al Tramonto", boat2_desc: "<strong>Partenza:</strong> 18:30<br>Prosecco e stuzzichini inclusi."
-            },
-            en: {
-                connected: "● Connected", welcome: "Welcome", tagline: "Your digital concierge.",
-                btn_book: "Welcome Book", btn_book_sub: "Guide & Rules",
-                btn_bar: "Minibar", btn_bar_sub: "Wines & Snacks",
-                btn_art: "Art Gallery", btn_art_sub: "Discover the Art Collection",
-
-                btn_guest: "Guestbook", btn_guest_sub: "Pin your location & leave a memory",
-
-                btn_tours: "Excursions", btn_tours_sub: "Private Car Tours",
-                btn_boat: "Boat Tours", btn_boat_sub: "Sea & Relax",
-                btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
-
-                tours_title: "Car Tours", tours_subtitle: "Private driver service.",
-                boat_title: "Boat Excursions", boat_subtitle: "Discover the Sicilian coast.",
-                taxi_title: "Taxi Service", taxi_desc: "Trusted external partner.",
-
-                btn_chat_tour: "Book Car Tour", btn_chat_boat: "Book Boat Tour", btn_chat_taxi: "Request Taxi",
-
-                cash_only_warning: "CASH PAYMENT ONLY TO THE PARTNER",
-                external_service_desc: "External service provided by trusted partners.",
-                logout: "Disconnect Wi-Fi",
-
-                tour1_title: "Palermo City Tour", tour1_desc: "<strong>Start:</strong> 09:00 - 13:00<br>Complete historical center tour.",
-                tour2_title: "Monreale & Cefalù", tour2_desc: "<strong>Duration:</strong> Full Day<br>Norman Art and Sea.",
-                tour3_title: "Valley of the Temples", tour3_desc: "<strong>Duration:</strong> Full Day<br>Journey into Greek history.",
-                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Start:</strong> 10:00<br>Swimming and snorkeling included.",
-                boat2_title: "Sunset Aperitif", boat2_desc: "<strong>Start:</strong> 18:30<br>Prosecco and snacks included."
-            },
-            fr: {
-                connected: "● Connecté", welcome: "Bienvenue", tagline: "Votre concierge numérique.",
-                btn_book: "Livret d'Accueil", btn_book_sub: "Guide et Règles",
-                btn_bar: "Minibar", btn_bar_sub: "Vins et Snacks",
-                btn_art: "Galerie d'Art", btn_art_sub: "Découvrez la collection",
-                
-                btn_guest: "Livre d'Or", btn_guest_sub: "Marquez votre emplacement",
-
-                btn_tours: "Excursions", btn_tours_sub: "Tours en Voiture",
-                btn_boat: "Tours en Bateau", btn_boat_sub: "Mer et Détente",
-                btn_taxi: "Taxi", btn_taxi_sub: "Transferts & Ville",
-
-                tours_title: "Tours en Voiture", tours_subtitle: "Chauffeur privé.",
-                boat_title: "Excursions en Bateau", boat_subtitle: "Découvrez la côte sicilienne.",
-                taxi_title: "Service Taxi", taxi_desc: "Partenaire de confiance.",
-
-                btn_chat_tour: "Réserver Voiture", btn_chat_boat: "Réserver Bateau", btn_chat_taxi: "Commander Taxi",
-
-                cash_only_warning: "PAIEMENT EN ESPÈCES AU PARTENAIRE",
-                external_service_desc: "Service externe fourni par des partenaires.",
-                logout: "Déconnexion Wi-Fi",
-
-                tour1_title: "Tour de Palerme", tour1_desc: "<strong>Départ:</strong> 09h00 - 13h00<br>Tour complet du centre historique.",
-                tour2_title: "Monreale & Cefalù", tour2_desc: "<strong>Durée:</strong> Journée Complète<br>Art Normand et Mer.",
-                tour3_title: "Vallée des Temples", tour3_desc: "<strong>Durée:</strong> Journée Complète<br>Voyage dans l'histoire grecque.",
-                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Départ:</strong> 10h00<br>Baignade et snorkeling inclus.",
-                boat2_title: "Apéritif au Coucher du Soleil", boat2_desc: "<strong>Départ:</strong> 18h30<br>Prosecco et snacks inclus."
+            try {
+                // Sostituisci con il tuo URL Webhook di n8n
+                const response = await fetch('https://TUO_URL_N8N/webhook/concierge-pma', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        sessionId: localStorage.getItem('codice_porta') || 'guest_general'
+                    })
+                });
+                const data = await response.json();
+                msgContainer.innerHTML += `<div class="message ai-msg">${data.output}</div>`;
+            } catch (e) {
+                msgContainer.innerHTML += `<div class="message ai-msg">Ops! Connessione persa. Riprova tra poco.</div>`;
             }
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+
+        function quickMsg(text) {
+            document.getElementById('chat-input').value = text;
+            sendMessage();
+        }
+
+        document.getElementById('chat-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
+
+        // --- TRADUZIONI ---
+        const translations = {
+            it: { welcome: "Benvenuto", tagline: "Il tuo concierge digitale.", connected: "● Connesso", btn_art: "Art Gallery", btn_art_sub: "Esplora la collezione", logout: "Disconnetti Wi-Fi" },
+            en: { welcome: "Welcome", tagline: "Your digital concierge.", connected: "● Connected", btn_art: "Art Gallery", btn_art_sub: "Explore the collection", logout: "Disconnect Wi-Fi" },
+            fr: { welcome: "Bienvenue", tagline: "Votre concierge numérique.", connected: "● Connecté", btn_art: "Galerie d'Art", btn_art_sub: "Découvrez la collection", logout: "Déconnexion Wi-Fi" }
         };
 
         function setLanguage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) element.innerHTML = translations[lang][key];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
             });
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
         }
+
+        // Auto-lingua
         const userLang = navigator.language.substring(0, 2);
         setLanguage(translations[userLang] ? userLang : 'en');
     </script>
