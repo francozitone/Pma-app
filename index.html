@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Palermonamour Guest App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #050505; --glass: rgba(30, 30, 30, 0.65); --gold: #d4af37; --text-muted: #a0a0a0; }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; padding: 20px; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: 40px; }
+        
+        /* Background Luxury */
+        body::before { content:''; position:fixed; top:-20%; left:-20%; width:140%; height:140%; background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.08), transparent 60%); z-index:-1; pointer-events:none; }
+
+        /* Header */
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .logo { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 1px; font-size: 1.1rem; }
+        .status { font-size: 0.7rem; color: #4caf50; background: rgba(76,175,80,0.1); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(76,175,80,0.2); display: flex; align-items: center; gap: 5px; }
+
+        /* Griglia Bento */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        
+        /* Card Design */
+        .card { background: var(--glass); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px; position: relative; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); text-decoration: none; color: white; display: flex; flex-direction: column; justify-content: space-between; height: 160px; transition: transform 0.2s; }
+        .card:active { transform: scale(0.97); background: rgba(255,255,255,0.1); }
+        .card.full { grid-column: span 2; height: auto; aspect-ratio: 16/9; padding: 0; }
+        
+        .icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .label { font-size: 0.9rem; font-weight: 500; }
+        .sub { font-size: 0.7rem; color: var(--text-muted); margin-top: 3px; }
+        .arrow { position: absolute; top: 15px; right: 15px; color: var(--gold); opacity: 0.7; }
+
+        /* Gallery Slider */
+        .gallery-wrap { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding: 15px; padding-top: 50px; -webkit-overflow-scrolling: touch; }
+        .art-item { min-width: 130px; height: 170px; border-radius: 12px; overflow: hidden; scroll-snap-align: center; border: 1px solid rgba(255,255,255,0.1); position: relative; }
+        .art-item img { width: 100%; height: 100%; object-fit: cover; }
+        .art-overlay { position: absolute; bottom:0; left:0; width:100%; background: linear-gradient(to top, #000, transparent); padding: 8px; font-size: 0.6rem; color: var(--gold); text-align: center; }
+        .gallery-header { position: absolute; top: 15px; left: 15px; z-index: 10; }
+
+        /* Concierge Btn */
+        .wa-btn { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 16px; font-weight: 600; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.2); }
+        
+        /* Logout */
+        .footer { text-align: center; margin-top: 30px; }
+        .logout { color: #666; font-size: 0.75rem; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PALERMONAMOUR</div>
+        <div class="status">● Connected</div>
+    </header>
+
+    <div style="margin-bottom: 25px;">
+        <h1 style="font-family:'Cinzel'; font-size:1.6rem; color:var(--gold);">Benvenuto</h1>
+        <p style="color:#bbb; font-size:0.9rem;">Il tuo concierge digitale è attivo.</p>
+    </div>
+
+    <div class="grid">
+        <a href="www.palermonamour.it/welcomebook" target="_blank" class="card">
+            <div class="arrow">↗</div>
+            <div class="icon">📖</div>
+            <div><div class="label">Welcome Book</div><div class="sub">Guida e Regole</div></div>
+        </a>
+
+        <a href="www.palermonamour.it/menudigitale" target="_blank" class="card">
+            <div class="arrow">↗</div>
+            <div class="icon">🥂</div>
+            <div><div class="label">Frigobar</div><div class="sub">Vini & Snack</div></div>
+        </a>
+
+        <div class="card full">
+            <div class="gallery-header">
+                <div class="label" style="color:var(--gold)">Art Gallery</div>
+                <div class="sub">Scorri le opere</div>
+            </div>
+            <div class="gallery-wrap">
+                <div class="art-item"><img src="https://via.placeholder.com/200x300/333/d4af37"><div class="art-overlay">Opera 1</div></div>
+                <div class="art-item"><img src="https://via.placeholder.com/200x300/222/d4af37"><div class="art-overlay">Opera 2</div></div>
+                <div class="art-item"><img src="https://via.placeholder.com/200x300/111/d4af37"><div class="art-overlay">Opera 3</div></div>
+                <a href="https://www.palermonamour.it" class="art-item" style="display:flex; align-items:center; justify-content:center; text-decoration:none; color:white; background:#111;">
+                    <div style="font-size:0.7rem; text-align:center;">Vedi tutte<br>sul sito →</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/393505613327" class="wa-btn">
+        <span style="font-size:1.2rem">💬</span> Concierge WhatsApp
+    </a>
+
+    <div class="footer">
+        <a href="http://wifi.palermonamour.it/logout" class="logout">Disconnetti Wi-Fi</a>
+    </div>
+
+</body>
+</html>
