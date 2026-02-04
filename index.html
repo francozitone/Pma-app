@@ -8,7 +8,7 @@
     
     <style>
         /* --- STILI BASE --- */
-        :root { --bg: #050505; --gold: #d4af37; --text-muted: #ccc; }
+        :root { --bg: #050505; --gold: #d4af37; --text-muted: #ccc; --warning: #ffcc00; }
         * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; scroll-behavior: smooth; }
         body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; min-height: 100vh; padding: 20px; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: 60px; }
         body::before { content:''; position:fixed; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at center, #1a1a1a 0%, #000 80%); z-index:-1; pointer-events:none; }
@@ -19,9 +19,9 @@
 
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
 
-        /* --- CARD CON FOTO --- */
+        /* --- CARD STYLES --- */
         .card { 
-            position: relative; height: 180px; border-radius: 20px; overflow: hidden; 
+            position: relative; height: 160px; border-radius: 20px; overflow: hidden; 
             text-decoration: none; color: white; border: 1px solid rgba(212,175,55,0.2);
             transition: transform 0.2s; cursor: pointer;
         }
@@ -36,35 +36,44 @@
             background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.4) 100%); z-index: 1;
         }
         .card-content {
-            position: relative; z-index: 2; height: 100%; padding: 20px;
+            position: relative; z-index: 2; height: 100%; padding: 15px;
             display: flex; flex-direction: column; justify-content: flex-end;
         }
-        .card.full { grid-column: span 2; height: 200px; }
-        .label { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 4px; }
-        .sub { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
-        .arrow { position: absolute; top: 15px; right: 15px; color: var(--gold); opacity: 0.8; font-size: 1.2rem; z-index: 3; }
+        .card.full { grid-column: span 2; height: 180px; }
+        .label { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); margin-bottom: 4px; line-height: 1.2; }
+        .sub { font-size: 0.65rem; color: var(--text-muted); font-weight: 400; }
+        .arrow { position: absolute; top: 15px; right: 15px; color: var(--gold); opacity: 0.8; font-size: 1rem; z-index: 3; }
 
-        /* --- SEZIONE ESCURSIONI (NASCOSTA DI DEFAULT) --- */
-        .tours-section { 
-            display: none; /* NASCOSTA ALL'INIZIO */
-            margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); 
+        /* --- SEZIONI NASCOSTE --- */
+        .hidden-section { 
+            display: none; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); 
             animation: slideDown 0.5s ease-out;
         }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .section-title { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
+        .section-title { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
         
         details.tour-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
         details.tour-item[open] { background: rgba(20,20,20,0.9); border-color: var(--gold); }
-        summary { padding: 20px; list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; font-size: 0.9rem; }
+        summary { padding: 15px; list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; font-size: 0.85rem; }
         summary::-webkit-details-marker { display: none; }
         summary::after { content: '+'; font-size: 1.2rem; color: var(--gold); font-weight: 300; }
         details[open] summary::after { content: '-'; }
-        .tour-price { font-size: 0.8rem; color: #4caf50; background: rgba(76,175,80,0.1); padding: 3px 8px; border-radius: 10px; margin-left: 10px; }
-        .tour-content { padding: 0 20px 20px 20px; font-size: 0.8rem; color: #ccc; line-height: 1.6; }
+        .tour-price { font-size: 0.75rem; color: #4caf50; background: rgba(76,175,80,0.1); padding: 3px 8px; border-radius: 10px; margin-left: 10px; }
+        .tour-content { padding: 0 15px 15px 15px; font-size: 0.8rem; color: #ccc; line-height: 1.6; }
+
+        .warning-box {
+            background: rgba(20,20,20,0.8); border: 1px solid var(--warning); border-radius: 16px;
+            padding: 15px; margin-top: 20px; text-align: center;
+        }
+        .warning-text { 
+            color: var(--warning); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
         
-        .wa-btn { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 16px; font-weight: 600; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.2); margin-top: 30px; }
-        .lang-switch { text-align: center; margin-top: 30px; margin-bottom: 10px; }
+        .wa-btn { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 16px; font-weight: 600; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.2); margin-top: 20px; }
+        
+        .lang-switch { text-align: center; margin-top: 40px; margin-bottom: 10px; }
         .lang-btn { background: none; border: none; color: #666; font-size: 0.75rem; padding: 5px 10px; cursor: pointer; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
         .lang-btn.active { color: var(--gold); font-weight: bold; }
         .footer { text-align: center; margin-top: 20px; }
@@ -84,7 +93,6 @@
     </div>
 
     <div class="grid">
-        
         <a href="https://www.palermonamour.it/welcomebook" target="_blank" class="card">
             <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=500&auto=format&fit=crop');"></div>
             <div class="card-overlay"></div>
@@ -109,25 +117,55 @@
             <div class="card-content">
                 <div class="arrow">↗</div>
                 <div style="text-align:center; margin-bottom: auto; margin-top: 20px; font-size: 2rem;">🎨</div>
-                <div><div class="label" style="font-size:1.3rem;" data-i18n="btn_art">Art Gallery</div><div class="sub" data-i18n="btn_art_sub">Esplora la collezione privata della Suite</div></div>
+                <div><div class="label" style="font-size:1.3rem;" data-i18n="btn_art">Art Gallery</div><div class="sub" data-i18n="btn_art_sub">Esplora la collezione della Suite</div></div>
             </div>
         </a>
 
-        <div class="card full" onclick="toggleTours()">
-            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1526398977052-156618674694?q=80&w=800&auto=format&fit=crop');"></div>
+        <a href="https://padlet.com/Palermonamour/world-map-palermonamour-659gm9nlnxagjqkd" target="_blank" class="card full">
+            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop');"></div>
+            <div class="card-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%);"></div>
+            <div class="card-content">
+                <div class="arrow">↗</div>
+                <div style="text-align:center; margin-bottom: auto; margin-top: 20px; font-size: 2rem;">🌍</div>
+                <div><div class="label" style="font-size:1.3rem;" data-i18n="btn_guest">Guestbook</div><div class="sub" data-i18n="btn_guest_sub">Lascia il tuo segno nel mondo</div></div>
+            </div>
+        </a>
+
+        <div class="card" onclick="toggleSection('tours-section')">
+            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1526398977052-156618674694?q=80&w=500&auto=format&fit=crop');"></div>
             <div class="card-overlay"></div>
             <div class="card-content">
-                <div class="arrow" style="transform: rotate(90deg);">›</div>
-                <div style="text-align:center; margin-bottom: auto; margin-top: 20px; font-size: 2rem;">🚘</div>
-                <div><div class="label" style="font-size:1.3rem;" data-i18n="btn_tours">Escursioni in Auto</div><div class="sub" data-i18n="btn_tours_sub">Servizio autista privato e tour personalizzati</div></div>
+                <div class="arrow">↓</div>
+                <div><div class="label" data-i18n="btn_tours">Escursioni</div><div class="sub" data-i18n="btn_tours_sub">Tour in Auto</div></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleSection('boat-section')">
+            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1566552881560-0be862a7c445?q=80&w=500&auto=format&fit=crop');"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <div class="arrow">↓</div>
+                <div><div class="label" data-i18n="btn_boat">Barca</div><div class="sub" data-i18n="btn_boat_sub">Boat Tours</div></div>
+            </div>
+        </div>
+
+        <div class="card full" onclick="toggleSection('taxi-section')">
+            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=800&auto=format&fit=crop');"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <div class="arrow">↓</div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div><div class="label" data-i18n="btn_taxi">Taxi & Transfer</div><div class="sub" data-i18n="btn_taxi_sub">City & Airport Service</div></div>
+                    <div style="font-size:2rem;">🚖</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="tours-section" class="tours-section">
-        <h2 class="section-title" data-i18n="tours_title">Esplora la Sicilia</h2>
+    <div id="tours-section" class="hidden-section">
+        <h2 class="section-title" data-i18n="tours_title">Esplora Palermo</h2>
         <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="tours_subtitle">Servizio autista privato. Clicca per i dettagli.</p>
-
+        
         <details class="tour-item">
             <summary><span data-i18n="tour1_title">Palermo City Tour</span> <span class="tour-price">€150</span></summary>
             <div class="tour-content"><p data-i18n="tour1_desc">Dettagli...</p></div>
@@ -143,7 +181,45 @@
             <div class="tour-content"><p data-i18n="tour3_desc">Dettagli...</p></div>
         </details>
 
-        <a href="https://wa.me/393505613327" class="wa-btn"><span style="font-size:1.2rem">💬</span> <span data-i18n="btn_chat">Concierge WhatsApp</span></a>
+        <div class="warning-box">
+            <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI AL PARTNER</span></div>
+            <p style="font-size:0.7rem; color:#aaa; margin-top:5px;" data-i18n="external_service_desc">Servizio esterno partner.</p>
+        </div>
+        <a href="https://wa.me/393505613327?text=Salve,%20info%20Tour%20Auto" class="wa-btn"><span style="font-size:1.2rem">💬</span> <span data-i18n="btn_chat_tour">Prenota Auto</span></a>
+    </div>
+
+    <div id="boat-section" class="hidden-section">
+        <h2 class="section-title" data-i18n="boat_title">Tour in Barca</h2>
+        <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="boat_subtitle">Scopri la costa dal mare. Skipper privato.</p>
+        
+        <details class="tour-item">
+            <summary><span data-i18n="boat1_title">Mondello & Capo Gallo</span> <span class="tour-price">€180</span></summary>
+            <div class="tour-content"><p data-i18n="boat1_desc">Dettagli...</p></div>
+        </details>
+
+        <details class="tour-item">
+            <summary><span data-i18n="boat2_title">Aperitivo al Tramonto</span> <span class="tour-price">€150</span></summary>
+            <div class="tour-content"><p data-i18n="boat2_desc">Dettagli...</p></div>
+        </details>
+
+        <div class="warning-box">
+            <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI AL PARTNER</span></div>
+            <p style="font-size:0.7rem; color:#aaa; margin-top:5px;" data-i18n="external_service_desc">Servizio esterno partner.</p>
+        </div>
+        <a href="https://wa.me/393505613327?text=Salve,%20info%20Tour%20Barca" class="wa-btn"><span style="font-size:1.2rem">🚤</span> <span data-i18n="btn_chat_boat">Prenota Barca</span></a>
+    </div>
+
+    <div id="taxi-section" class="hidden-section">
+        <h2 class="section-title" data-i18n="taxi_title">Taxi Service</h2>
+        <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="taxi_desc">Trasferimenti aeroportuali e corse in città.</p>
+        
+        <div class="warning-box">
+            <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI AL PARTNER</span></div>
+             <p style="font-size:0.7rem; color:#aaa; margin-top:5px;" data-i18n="external_service_desc">Servizio esterno partner.</p>
+        </div>
+        <a href="https://wa.me/393505613327?text=Salve,%20richiesta%20Taxi" class="wa-btn" style="background:#333; border:1px solid #d4af37; color:#d4af37;">
+            <span style="font-size:1.2rem">🚖</span> <span data-i18n="btn_chat_taxi">Richiedi Taxi</span>
+        </a>
     </div>
 
     <div class="lang-switch">
@@ -155,57 +231,102 @@
     <div class="footer"><a href="http://wifi.palermonamour.it/logout" class="logout" data-i18n="logout">Disconnetti Wi-Fi</a></div>
 
     <script>
-        // Funzione per mostrare/nascondere le escursioni
-        function toggleTours() {
-            var section = document.getElementById("tours-section");
+        function toggleSection(id) {
+            document.querySelectorAll('.hidden-section').forEach(el => { if(el.id !== id) el.style.display = 'none'; });
+            var section = document.getElementById(id);
             if (section.style.display === "block") {
                 section.style.display = "none";
             } else {
                 section.style.display = "block";
-                // Scorre dolcemente verso la sezione
-                setTimeout(function() {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                setTimeout(function() { section.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
             }
         }
 
-        // Traduzioni
         const translations = {
             it: {
                 connected: "● Connesso", welcome: "Benvenuto", tagline: "Il tuo concierge digitale.",
-                btn_book: "Welcome Book", btn_book_sub: "Guida alla Suite e Regole",
-                btn_bar: "Frigobar", btn_bar_sub: "Champagne, Vini & Snack",
-                btn_art: "Art Gallery", btn_art_sub: "Esplora la collezione privata della Suite",
-                btn_tours: "Escursioni in Auto", btn_tours_sub: "Servizio autista privato",
-                tours_title: "Esplora la Sicilia", tours_subtitle: "Servizio autista privato. Clicca per i dettagli.",
-                btn_chat: "Prenota su WhatsApp", logout: "Disconnetti Wi-Fi",
+                btn_book: "Welcome Book", btn_book_sub: "Guida e Regole",
+                btn_bar: "Frigobar", btn_bar_sub: "Vini & Snack",
+                btn_art: "Art Gallery", btn_art_sub: "Esplora la collezione privata",
+                
+                btn_guest: "Guestbook", btn_guest_sub: "Lascia il tuo segno nel mondo",
+
+                btn_tours: "Escursioni", btn_tours_sub: "Tour in Auto",
+                btn_boat: "Gite in Barca", btn_boat_sub: "Mare & Relax",
+                btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
+                
+                tours_title: "Tour in Auto", tours_subtitle: "Servizio autista privato.",
+                boat_title: "Escursioni in Barca", boat_subtitle: "Scopri la costa siciliana.",
+                taxi_title: "Servizio Taxi", taxi_desc: "Partner esterno di fiducia.",
+
+                btn_chat_tour: "Prenota Auto", btn_chat_boat: "Prenota Barca", btn_chat_taxi: "Richiedi Taxi",
+
+                cash_only_warning: "PAGAMENTO SOLO CONTANTI AL PARTNER",
+                external_service_desc: "Servizio esterno erogato da partner di fiducia.",
+                logout: "Disconnetti Wi-Fi",
+                
+                // DETTAGLI ESEMPIO
                 tour1_title: "Palermo City Tour", tour1_desc: "<strong>Partenza:</strong> 09:00 - 13:00<br>Tour completo del centro storico.",
                 tour2_title: "Monreale & Cefalù", tour2_desc: "<strong>Durata:</strong> Giornata Intera<br>Arte Normanna e mare.",
-                tour3_title: "Valle dei Templi", tour3_desc: "<strong>Durata:</strong> Giornata Intera<br>Viaggio nella storia Greca."
+                tour3_title: "Valle dei Templi", tour3_desc: "<strong>Durata:</strong> Giornata Intera<br>Viaggio nella storia Greca.",
+                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Partenza:</strong> 10:00<br>Bagno e snorkeling inclusi.",
+                boat2_title: "Aperitivo al Tramonto", boat2_desc: "<strong>Partenza:</strong> 18:30<br>Prosecco e stuzzichini inclusi."
             },
             en: {
                 connected: "● Connected", welcome: "Welcome", tagline: "Your digital concierge.",
-                btn_book: "Welcome Book", btn_book_sub: "Suite Guide & Rules",
-                btn_bar: "Minibar", btn_bar_sub: "Champagne, Wines & Snacks",
-                btn_art: "Art Gallery", btn_art_sub: "Discover the private Art Collection",
-                btn_tours: "Private Car Tours", btn_tours_sub: "Private driver service",
-                tours_title: "Explore Sicily", tours_subtitle: "Private driver service. Tap for details.",
-                btn_chat: "Book via WhatsApp", logout: "Disconnect Wi-Fi",
+                btn_book: "Welcome Book", btn_book_sub: "Guide & Rules",
+                btn_bar: "Minibar", btn_bar_sub: "Wines & Snacks",
+                btn_art: "Art Gallery", btn_art_sub: "Discover the Art Collection",
+
+                btn_guest: "Guestbook", btn_guest_sub: "Pin your location & leave a memory",
+
+                btn_tours: "Excursions", btn_tours_sub: "Private Car Tours",
+                btn_boat: "Boat Tours", btn_boat_sub: "Sea & Relax",
+                btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
+
+                tours_title: "Car Tours", tours_subtitle: "Private driver service.",
+                boat_title: "Boat Excursions", boat_subtitle: "Discover the Sicilian coast.",
+                taxi_title: "Taxi Service", taxi_desc: "Trusted external partner.",
+
+                btn_chat_tour: "Book Car Tour", btn_chat_boat: "Book Boat Tour", btn_chat_taxi: "Request Taxi",
+
+                cash_only_warning: "CASH PAYMENT ONLY TO THE PARTNER",
+                external_service_desc: "External service provided by trusted partners.",
+                logout: "Disconnect Wi-Fi",
+
                 tour1_title: "Palermo City Tour", tour1_desc: "<strong>Start:</strong> 09:00 - 13:00<br>Complete historical center tour.",
                 tour2_title: "Monreale & Cefalù", tour2_desc: "<strong>Duration:</strong> Full Day<br>Norman Art and Sea.",
-                tour3_title: "Valley of the Temples", tour3_desc: "<strong>Duration:</strong> Full Day<br>Journey into Greek history."
+                tour3_title: "Valley of the Temples", tour3_desc: "<strong>Duration:</strong> Full Day<br>Journey into Greek history.",
+                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Start:</strong> 10:00<br>Swimming and snorkeling included.",
+                boat2_title: "Sunset Aperitif", boat2_desc: "<strong>Start:</strong> 18:30<br>Prosecco and snacks included."
             },
             fr: {
                 connected: "● Connecté", welcome: "Bienvenue", tagline: "Votre concierge numérique.",
-                btn_book: "Livret d'Accueil", btn_book_sub: "Guide de la Suite et Règles",
-                btn_bar: "Minibar", btn_bar_sub: "Champagne, Vins et Snacks",
-                btn_art: "Galerie d'Art", btn_art_sub: "Découvrez la collection privée",
-                btn_tours: "Excursions en Voiture", btn_tours_sub: "Service chauffeur privé",
-                tours_title: "Explorez la Sicile", tours_subtitle: "Chauffeur privé. Cliquez pour les détails.",
-                btn_chat: "Réserver sur WhatsApp", logout: "Déconnexion Wi-Fi",
+                btn_book: "Livret d'Accueil", btn_book_sub: "Guide et Règles",
+                btn_bar: "Minibar", btn_bar_sub: "Vins et Snacks",
+                btn_art: "Galerie d'Art", btn_art_sub: "Découvrez la collection",
+                
+                btn_guest: "Livre d'Or", btn_guest_sub: "Marquez votre emplacement",
+
+                btn_tours: "Excursions", btn_tours_sub: "Tours en Voiture",
+                btn_boat: "Tours en Bateau", btn_boat_sub: "Mer et Détente",
+                btn_taxi: "Taxi", btn_taxi_sub: "Transferts & Ville",
+
+                tours_title: "Tours en Voiture", tours_subtitle: "Chauffeur privé.",
+                boat_title: "Excursions en Bateau", boat_subtitle: "Découvrez la côte sicilienne.",
+                taxi_title: "Service Taxi", taxi_desc: "Partenaire de confiance.",
+
+                btn_chat_tour: "Réserver Voiture", btn_chat_boat: "Réserver Bateau", btn_chat_taxi: "Commander Taxi",
+
+                cash_only_warning: "PAIEMENT EN ESPÈCES AU PARTENAIRE",
+                external_service_desc: "Service externe fourni par des partenaires.",
+                logout: "Déconnexion Wi-Fi",
+
                 tour1_title: "Tour de Palerme", tour1_desc: "<strong>Départ:</strong> 09h00 - 13h00<br>Tour complet du centre historique.",
                 tour2_title: "Monreale & Cefalù", tour2_desc: "<strong>Durée:</strong> Journée Complète<br>Art Normand et Mer.",
-                tour3_title: "Vallée des Temples", tour3_desc: "<strong>Durée:</strong> Journée Complète<br>Voyage dans l'histoire grecque."
+                tour3_title: "Vallée des Temples", tour3_desc: "<strong>Durée:</strong> Journée Complète<br>Voyage dans l'histoire grecque.",
+                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Départ:</strong> 10h00<br>Baignade et snorkeling inclus.",
+                boat2_title: "Apéritif au Coucher du Soleil", boat2_desc: "<strong>Départ:</strong> 18h30<br>Prosecco et snacks inclus."
             }
         };
 
