@@ -66,6 +66,20 @@
         .tour-price { font-size: 0.75rem; color: #4caf50; background: rgba(76,175,80,0.1); padding: 3px 8px; border-radius: 10px; margin-left: 10px; }
         .tour-content { padding: 0 15px 15px 15px; font-size: 0.8rem; color: #ccc; line-height: 1.6; }
 
+        /* OFFERTA SPECIALE TAXI */
+        .taxi-deal {
+            border: 1px solid var(--gold);
+            background: rgba(212,175,55,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .taxi-deal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .taxi-deal-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; }
+        .taxi-deal-price { background: var(--gold); color: black; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; }
+        .taxi-deal-desc { font-size: 0.8rem; color: #ddd; line-height: 1.4; }
+
         .warning-box {
             background: rgba(20,20,20,0.8); border: 1px solid var(--warning); border-radius: 16px;
             padding: 15px; margin-top: 20px; text-align: center;
@@ -133,6 +147,7 @@
             <div class="card-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(212,175,55,0.2) 100%);"></div>
             <div class="card-content">
                 <div class="arrow">↗</div>
+                <div style="text-align:center; margin-bottom: auto; margin-top: 20px; font-size: 2rem;">🎨</div>
                 <div><div class="label" style="font-size:1.3rem;" data-i18n="btn_art">Art Gallery</div><div class="sub" data-i18n="btn_art_sub">Esplora la collezione della Suite</div></div>
             </div>
         </a>
@@ -142,12 +157,13 @@
             <div class="card-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%);"></div>
             <div class="card-content">
                 <div class="arrow">↗</div>
+                <div style="text-align:center; margin-bottom: auto; margin-top: 20px; font-size: 2rem;">🌍</div>
                 <div><div class="label" style="font-size:1.3rem;" data-i18n="btn_guest">Guestbook</div><div class="sub" data-i18n="btn_guest_sub">Lascia il tuo segno nel mondo</div></div>
             </div>
         </a>
 
         <div class="card" onclick="toggleSection('tours-section')">
-            <div class="card-bg-img" style="background-image: url('https://www.seecilytourism.com/wp-content/uploads/2021/10/46098145_2281788788758790_7584446739000590336_n.jpg'); background-position: center bottom;"></div>
+            <div class="card-bg-img" style="background-image: url('https://www.palermonamour.it/wp-content/uploads/2024/08/isola-delle-femmine-tramonto.jpg'); background-position: center bottom;"></div>
             <div class="card-overlay"></div>
             <div class="card-content">
                 <div class="arrow">↓</div>
@@ -156,7 +172,7 @@
         </div>
 
         <div class="card" onclick="toggleSection('boat-section')">
-            <div class="card-bg-img" style="background-image: url('https://th.bing.com/th/id/R.4161924394f19b0d2098238c06e6b45d?rik=1YefpmAR56Wk8Q&riu=http%3a%2f%2fwww.ioamolasicilia.com%2fwp-content%2fuploads%2f2015%2f03%2fXT102900.jpg&ehk=S3K9W9CFvxm%2fP%2f9CPWQLHXXuPlkxfb0swsW87hYNGU4%3d&risl=&pid=ImgRaw&r=0'); background-position: center center;"></div>
+            <div class="card-bg-img" style="background-image: url('https://www.ioamolasicilia.com/wp-content/uploads/2015/03/XT102900.jpg'); background-position: center center;"></div>
             <div class="card-overlay"></div>
             <div class="card-content">
                 <div class="arrow">↓</div>
@@ -234,7 +250,18 @@
 
     <div id="taxi-section" class="hidden-section">
         <h2 class="section-title" data-i18n="taxi_title">Taxi Service</h2>
-        <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="taxi_desc">Trasferimenti aeroportuali e corse in città.</p>
+        
+        <div class="taxi-deal">
+            <div class="taxi-deal-header">
+                <span class="taxi-deal-title" data-i18n="taxi_offer_title">Transfer Aeroporto (PMO)</span>
+                <span class="taxi-deal-price">€40</span>
+            </div>
+            <div class="taxi-deal-desc" data-i18n="taxi_offer_desc">
+                Tariffa convenzionata per i nostri ospiti. Più conveniente dei taxi pubblici. Zero stress, massima puntualità.
+            </div>
+        </div>
+
+        <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="taxi_desc">Disponibile anche per corse in città.</p>
         
         <div class="warning-box">
             <div class="warning-text">⚠️ <span data-i18n="cash_only_warning">PAGAMENTO SOLO CONTANTI AL PARTNER</span></div>
@@ -249,10 +276,10 @@
     <div class="social-section">
         <div class="social-title" data-i18n="follow_us">SEGUICI SUI SOCIAL</div>
         <div class="social-icons">
-            <a href="https://www.instagram.com/palermonamour" target="_blank" class="social-btn">
+            <a href="https://www.instagram.com/palermonamour.home" target="_blank" class="social-btn">
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
-            <a href="https://www.facebook.com/palermonamour" target="_blank" class="social-btn">
+            <a href="https://www.facebook.com/palermonamour.it" target="_blank" class="social-btn">
                 <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
             </a>
         </div>
@@ -294,7 +321,9 @@
                 
                 tours_title: "Tour in Auto", tours_subtitle: "Servizio autista privato.",
                 boat_title: "Escursioni in Barca", boat_subtitle: "Scopri la costa siciliana.",
-                taxi_title: "Servizio Taxi", taxi_desc: "Partner esterno di fiducia.",
+                taxi_title: "Servizio Taxi", taxi_desc: "Disponibile anche per corse in città.",
+                taxi_offer_title: "Transfer Aeroporto (PMO)",
+                taxi_offer_desc: "Tariffa convenzionata per i nostri ospiti. Più conveniente dei taxi pubblici. Zero stress, massima puntualità.",
 
                 btn_chat_tour: "Prenota Auto", btn_chat_boat: "Prenota Barca", btn_chat_taxi: "Richiedi Taxi",
                 cash_only_warning: "PAGAMENTO SOLO CONTANTI AL PARTNER",
@@ -306,23 +335,22 @@
                 wa_msg_boat: "Salve, vorrei informazioni per un Tour in Barca.",
                 wa_msg_taxi: "Salve, vorrei prenotare un Taxi/Transfer.",
 
-                // DETTAGLI ITINERARI (1-5)
+                // ITINERARI
                 tour1_title: "1° Itinerario: Palermo e dintorni", 
-                tour1_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Cattedrale di Palermo (30 min)<br>• 2° Sosta: Palazzo dei Normanni e Cappella Palatina (45 min)<br>• 3° Sosta: Monreale e Cattedrale UNESCO (1 ora)<br>• 4° Sosta: Santuario Santa Rosalia e Belvedere di Monte Pellegrino (40 min)<br>• Rientro panoramico dal lungomare.<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
+                tour1_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Cattedrale di Palermo (30 min)<br>• 2° Sosta: Palazzo dei Normanni e Cappella Palatina (45 min)<br>• 3° Sosta: Monreale e Cattedrale UNESCO (1 ora)<br>• 4° Sosta: Santuario Santa Rosalia e Belvedere (40 min)<br>• Rientro panoramico.<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
 
                 tour2_title: "2° Itinerario: Spiagge e Panorami", 
-                tour2_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Spiaggia di Mondello (1 ora). Passeggiata o caffè sul lungomare.<br>• 2° Sosta: Riserva Capo Gallo (20 min). Scogliere panoramiche.<br>• 3° Sosta: Sferracavallo (45 min). Borgo marinaro con sosta gelato (offerto).<br>• Rientro attraverso il Parco della Favorita.<br><br><em>Tariffa: €130 (fino a 4 persone).</em>",
+                tour2_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Spiaggia di Mondello (1 ora).<br>• 2° Sosta: Riserva Capo Gallo (20 min).<br>• 3° Sosta: Sferracavallo (45 min). Borgo marinaro + gelato offerto.<br>• Rientro attraverso il Parco della Favorita.<br><br><em>Tariffa: €130 (fino a 4 persone).</em>",
 
                 tour3_title: "3° Itinerario: Monumenti e Mercati", 
-                tour3_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Mercato Ballarò o Capo (45 min). Street food e folclore.<br>• 2° Sosta: Quattro Canti e P.zza Pretoria (30 min).<br>• 3° Sosta: Chiesa del Gesù/Casa Professa (40 min). Barocco siciliano.<br>• Rientro con sosta foto al Teatro Massimo.<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
+                tour3_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Mercato Ballarò o Capo (45 min).<br>• 2° Sosta: Quattro Canti e P.zza Pretoria (30 min).<br>• 3° Sosta: Chiesa del Gesù/Casa Professa (40 min).<br>• Rientro con sosta foto al Teatro Massimo.<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
 
                 tour4_title: "4° Itinerario: Catacombe e Storia", 
-                tour4_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Catacombe dei Cappuccini (45 min). Suggestivo sito storico.<br>• 2° Sosta: Cattedrale di Palermo (30 min).<br>• 3° Sosta: Palazzo dei Normanni e Cappella Palatina (45 min).<br>• Rientro panoramico via Foro Italico.<br><br><em>Tariffa: €130 (fino a 4 persone, biglietti esclusi).</em>",
+                tour4_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Catacombe dei Cappuccini (45 min).<br>• 2° Sosta: Cattedrale di Palermo (30 min).<br>• 3° Sosta: Palazzo dei Normanni e Cappella Palatina (45 min).<br>• Rientro panoramico via Foro Italico.<br><br><em>Tariffa: €130 (fino a 4 persone, biglietti esclusi).</em>",
 
                 tour5_title: "5° Itinerario: Tour di Cefalù", 
-                tour5_desc: "<strong>Partenza 09:00 (Flessibile)</strong><br>Trasferimento di 1 ora circa.<br><br>• 1° Sosta: Cattedrale UNESCO e Mosaici (45 min).<br>• 2° Sosta: Centro storico e Lungomare (60 min). Relax e shopping.<br>• 3° Sosta: Lavatoio Medievale (15 min).<br>• Rientro panoramico lungo la costa.<br><br><em>Tariffa: €170 (fino a 4 persone, biglietti esclusi).</em>",
+                tour5_desc: "<strong>Partenza 09:00 (Flessibile)</strong><br>Trasferimento di 1 ora circa.<br><br>• 1° Sosta: Cattedrale UNESCO e Mosaici (45 min).<br>• 2° Sosta: Centro storico e Lungomare (60 min).<br>• 3° Sosta: Lavatoio Medievale (15 min).<br>• Rientro panoramico lungo la costa.<br><br><em>Tariffa: €170 (fino a 4 persone, biglietti esclusi).</em>",
 
-                // DETTAGLI BARCA
                 boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Partenza:</strong> 10:00<br>Bagno e snorkeling inclusi.",
                 boat2_title: "Aperitivo al Tramonto", boat2_desc: "<strong>Partenza:</strong> 18:30<br>Prosecco e stuzzichini inclusi."
             },
@@ -337,7 +365,10 @@
                 btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
                 tours_title: "Car Tours", tours_subtitle: "Private driver service.",
                 boat_title: "Boat Excursions", boat_subtitle: "Discover the Sicilian coast.",
-                taxi_title: "Taxi Service", taxi_desc: "Trusted external partner.",
+                taxi_title: "Taxi Service", taxi_desc: "Also available for city rides.",
+                taxi_offer_title: "Airport Transfer (PMO)",
+                taxi_offer_desc: "Exclusive flat rate for guests. Cheaper than public taxis. Stress-free & punctual.",
+
                 btn_chat_tour: "Book Car Tour", btn_chat_boat: "Book Boat Tour", btn_chat_taxi: "Request Taxi",
                 cash_only_warning: "CASH PAYMENT ONLY TO THE PARTNER",
                 external_service_desc: "External service provided by trusted partners.",
@@ -349,16 +380,16 @@
                 wa_msg_taxi: "Hello, I would like to request a Taxi/Transfer.",
 
                 tour1_title: "Itinerary 1: Palermo & Surroundings", 
-                tour1_desc: "<strong>Departure 09:00 AM - Return 01:00 PM</strong><br><br>• 1st Stop: Palermo Cathedral (30 min)<br>• 2nd Stop: Norman Palace & Palatine Chapel (45 min)<br>• 3rd Stop: Monreale UNESCO Cathedral (1 hour)<br>• 4th Stop: Santa Rosalia Sanctuary & Monte Pellegrino Viewpoint (40 min)<br>• Scenic drive back along the coast.<br><br><em>Price: €120 (up to 4 people, tickets not included).</em>",
+                tour1_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Palermo Cathedral (30 min)<br>• 2nd Stop: Norman Palace (45 min)<br>• 3rd Stop: Monreale UNESCO Cathedral (1 hr)<br>• 4th Stop: St. Rosalia Sanctuary (40 min)<br>• Scenic drive back.<br><br><em>Price: €120 (up to 4 people, tickets excluded).</em>",
 
                 tour2_title: "Itinerary 2: Beaches & Coast", 
-                tour2_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Mondello Beach (1 hr). Walk or coffee by the sea.<br>• 2nd Stop: Capo Gallo Reserve (20 min). Scenic cliffs.<br>• 3rd Stop: Sferracavallo (45 min). Fishing village + complimentary gelato.<br>• Return via Favorita Park.<br><br><em>Price: €130 (up to 4 people).</em>",
+                tour2_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Mondello Beach (1 hr).<br>• 2nd Stop: Capo Gallo Reserve (20 min).<br>• 3rd Stop: Sferracavallo (45 min). Fishing village + complimentary gelato.<br>• Return via Favorita Park.<br><br><em>Price: €130 (up to 4 people).</em>",
 
                 tour3_title: "Itinerary 3: Monuments & Markets", 
-                tour3_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Ballarò or Capo Market (45 min). Street food experience.<br>• 2nd Stop: Quattro Canti & Pretoria Fountain (30 min).<br>• 3rd Stop: Casa Professa Church (40 min). Sicilian Baroque.<br>• Photo stop at Teatro Massimo.<br><br><em>Price: €120 (up to 4 people, tickets excluded).</em>",
+                tour3_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Ballarò or Capo Market (45 min).<br>• 2nd Stop: Quattro Canti & Pretoria Fountain (30 min).<br>• 3rd Stop: Casa Professa Church (40 min).<br>• Photo stop at Teatro Massimo.<br><br><em>Price: €120 (up to 4 people, tickets excluded).</em>",
 
                 tour4_title: "Itinerary 4: Catacombs & History", 
-                tour4_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Capuchin Catacombs (45 min). Unique historic site.<br>• 2nd Stop: Palermo Cathedral (30 min).<br>• 3rd Stop: Norman Palace & Palatine Chapel (45 min).<br>• Scenic return via Foro Italico.<br><br><em>Price: €130 (up to 4 people, tickets excluded).</em>",
+                tour4_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Capuchin Catacombs (45 min).<br>• 2nd Stop: Palermo Cathedral (30 min).<br>• 3rd Stop: Norman Palace & Palatine Chapel (45 min).<br>• Scenic return via Foro Italico.<br><br><em>Price: €130 (up to 4 people, tickets excluded).</em>",
 
                 tour5_title: "Itinerary 5: Cefalù Tour", 
                 tour5_desc: "<strong>Departure 09:00 AM (Flexible)</strong><br>Approx 1 hour drive.<br><br>• 1st Stop: UNESCO Cathedral & Mosaics (45 min).<br>• 2nd Stop: Historic Center & Seafront (60 min). Relax & shopping.<br>• 3rd Stop: Medieval Washhouse (15 min).<br>• Scenic coastal drive back.<br><br><em>Price: €170 (up to 4 people, tickets excluded).</em>",
@@ -377,7 +408,10 @@
                 btn_taxi: "Taxi", btn_taxi_sub: "Transferts & Ville",
                 tours_title: "Tours en Voiture", tours_subtitle: "Chauffeur privé.",
                 boat_title: "Excursions en Bateau", boat_subtitle: "Découvrez la côte sicilienne.",
-                taxi_title: "Service Taxi", taxi_desc: "Partenaire de confiance.",
+                taxi_title: "Service Taxi", taxi_desc: "Aussi disponible pour les trajets en ville.",
+                taxi_offer_title: "Transfert Aéroport (PMO)",
+                taxi_offer_desc: "Tarif fixe exclusif pour nos clients. Moins cher que les taxis publics. Zéro stress, ponctualité maximale.",
+
                 btn_chat_tour: "Réserver Voiture", btn_chat_boat: "Réserver Bateau", btn_chat_taxi: "Commander Taxi",
                 cash_only_warning: "PAIEMENT EN ESPÈCES AU PARTENAIRE",
                 external_service_desc: "Service externe fourni par des partenaires.",
@@ -392,13 +426,13 @@
                 tour1_desc: "<strong>Départ 09h00 - Retour 13h00</strong><br><br>• 1er Arrêt: Cathédrale de Palerme (30 min)<br>• 2e Arrêt: Palais des Normands & Chapelle Palatine (45 min)<br>• 3e Arrêt: Monreale Cathédrale UNESCO (1 heure)<br>• 4e Arrêt: Sanctuaire Santa Rosalia & Belvédère de Monte Pellegrino (40 min)<br>• Retour panoramique par le front de mer.<br><br><em>Prix: €120 (jusqu'à 4 personnes, billets non inclus).</em>",
 
                 tour2_title: "Itinéraire 2: Plages et Panoramas", 
-                tour2_desc: "<strong>09h00 - 13h00</strong><br><br>• 1er Arrêt: Plage de Mondello (1 h). Promenade ou café.<br>• 2e Arrêt: Réserve Capo Gallo (20 min). Falaises.<br>• 3e Arrêt: Sferracavallo (45 min). Village de pêcheurs + glace offerte.<br>• Retour par le Parc della Favorita.<br><br><em>Prix: €130 (jusqu'à 4 personnes).</em>",
+                tour2_desc: "<strong>Départ 09h00 - Retour 13h00</strong><br><br>• 1er Arrêt: Plage de Mondello (1 h). Promenade ou café.<br>• 2e Arrêt: Réserve Capo Gallo (20 min). Falaises.<br>• 3e Arrêt: Sferracavallo (45 min). Village de pêcheurs + glace offerte.<br>• Retour par le Parc della Favorita.<br><br><em>Prix: €130 (jusqu'à 4 personnes).</em>",
 
                 tour3_title: "Itinéraire 3: Monuments et Marchés", 
-                tour3_desc: "<strong>09h00 - 13h00</strong><br><br>• 1er Arrêt: Marché Ballarò ou Capo (45 min). Street food.<br>• 2e Arrêt: Quattro Canti & Fontaine Pretoria (30 min).<br>• 3e Arrêt: Église Casa Professa (40 min). Baroque sicilien.<br>• Arrêt photo au Teatro Massimo.<br><br><em>Prix: €120 (jusqu'à 4 personnes, billets exclus).</em>",
+                tour3_desc: "<strong>Départ 09h00 - Retour 13h00</strong><br><br>• 1er Arrêt: Marché Ballarò ou Capo (45 min). Street food.<br>• 2e Arrêt: Quattro Canti & Fontaine Pretoria (30 min).<br>• 3e Arrêt: Église Casa Professa (40 min). Baroque sicilien.<br>• Arrêt photo au Teatro Massimo.<br><br><em>Prix: €120 (jusqu'à 4 personnes, billets exclus).</em>",
 
                 tour4_title: "Itinéraire 4: Catacombes et Histoire", 
-                tour4_desc: "<strong>09h00 - 13h00</strong><br><br>• 1er Arrêt: Catacombes des Capucins (45 min). Site historique unique.<br>• 2e Arrêt: Cathédrale de Palerme (30 min).<br>• 3e Arrêt: Palais des Normands & Chapelle Palatine (45 min).<br>• Retour via Foro Italico.<br><br><em>Prix: €130 (jusqu'à 4 personnes, billets exclus).</em>",
+                tour4_desc: "<strong>Départ 09h00 - Retour 13h00</strong><br><br>• 1er Arrêt: Catacombes des Capucins (45 min). Site historique unique.<br>• 2e Arrêt: Cathédrale de Palerme (30 min).<br>• 3e Arrêt: Palais des Normands & Chapelle Palatine (45 min).<br>• Retour via Foro Italico.<br><br><em>Prix: €130 (jusqu'à 4 personnes, billets exclus).</em>",
 
                 tour5_title: "Itinéraire 5: Tour de Cefalù", 
                 tour5_desc: "<strong>Départ 09h00 (Flexible)</strong><br>Env. 1h de route.<br><br>• 1er Arrêt: Cathédrale UNESCO (45 min).<br>• 2e Arrêt: Centre historique & Mer (60 min). Détente.<br>• 3e Arrêt: Lavoir Médiéval (15 min).<br>• Retour panoramique par la côte.<br><br><em>Prix: €170 (jusqu'à 4 personnes, billets exclus).</em>",
