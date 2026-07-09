@@ -30,7 +30,7 @@
         .card-bg-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover; 
-            background-position: center center; /* Default centro */
+            background-position: center center;
             z-index: 0; transition: transform 0.5s ease;
         }
         .card:active .card-bg-img { transform: scale(1.05); }
@@ -104,8 +104,8 @@
         .social-btn:active { background: var(--gold); color: #000; transform: scale(0.95); }
         .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
-        .lang-switch { text-align: center; margin-top: 30px; margin-bottom: 10px; }
-        .lang-btn { background: none; border: none; color: #666; font-size: 0.75rem; padding: 5px 10px; cursor: pointer; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+        .lang-switch { text-align: center; margin-top: 30px; margin-bottom: 10px; color: #444; }
+        .lang-btn { background: none; border: none; color: #666; font-size: 0.75rem; padding: 5px 10px; cursor: pointer; font-family: 'Montserrat', sans-serif; text-transform: uppercase; transition: color 0.2s; }
         .lang-btn.active { color: var(--gold); font-weight: bold; }
         .footer { text-align: center; margin-top: 20px; }
         .logout { color: #666; font-size: 0.75rem; text-decoration: underline; }
@@ -250,18 +250,18 @@
         <h2 class="section-title" data-i18n="taxi_title">Taxi Service</h2>
         
         <div class="taxi-deal">
-    <div class="taxi-deal-header">
-        <span class="taxi-deal-title" data-i18n="taxi_offer_title">Transfer Aeroporto (PMO)</span>
-        <span class="taxi-deal-price">€40</span>
-    </div>
-    <div class="taxi-deal-header" style="margin-top: 10px; border-top: 1px solid rgba(212,175,55,0.2); padding-top: 10px;">
-        <span class="taxi-deal-title" data-i18n="taxi_night_title" style="font-size: 0.9rem;">Servizio Notturno (22:00 - 06:00)</span>
-        <span class="taxi-deal-price" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">€50</span>
-    </div>
-    <div class="taxi-deal-desc" data-i18n="taxi_offer_desc" style="margin-top:10px;">
-        Tariffa convenzionata per i nostri ospiti. Più conveniente dei taxi pubblici. Zero stress, massima puntualità.
-    </div>
-</div>
+            <div class="taxi-deal-header">
+                <span class="taxi-deal-title" data-i18n="taxi_offer_title">Transfer Aeroporto (PMO)</span>
+                <span class="taxi-deal-price">€40</span>
+            </div>
+            <div class="taxi-deal-header" style="margin-top: 10px; border-top: 1px solid rgba(212,175,55,0.2); padding-top: 10px;">
+                <span class="taxi-deal-title" data-i18n="taxi_night_title" style="font-size: 0.9rem;">Servizio Notturno (22:00 - 06:00)</span>
+                <span class="taxi-deal-price" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">€50</span>
+            </div>
+            <div class="taxi-deal-desc" data-i18n="taxi_offer_desc" style="margin-top:10px;">
+                Tariffa convenzionata per i nostri ospiti. Più conveniente dei taxi pubblici. Zero stress, massima puntualità.
+            </div>
+        </div>
 
         <p style="font-size:0.8rem; color:#aaa; margin-bottom:20px;" data-i18n="taxi_desc">Disponibile anche per corse in città.</p>
         
@@ -288,9 +288,11 @@
     </div>
 
     <div class="lang-switch">
-        <button class="lang-btn active" onclick="setLanguage('it')">IT</button> |
-        <button class="lang-btn" onclick="setLanguage('en')">EN</button> |
-        <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+        <button class="lang-btn" id="btn-lang-it" onclick="setLanguage('it')">IT</button> |
+        <button class="lang-btn" id="btn-lang-en" onclick="setLanguage('en')">EN</button> |
+        <button class="lang-btn" id="btn-lang-fr" onclick="setLanguage('fr')">FR</button> |
+        <button class="lang-btn" id="btn-lang-es" onclick="setLanguage('es')">ES</button> |
+        <button class="lang-btn" id="btn-lang-de" onclick="setLanguage('de')">DE</button>
     </div>
 
     <div class="footer"><a href="http://wifi.palermonamour.it/logout" class="logout" data-i18n="logout">Disconnetti Wi-Fi</a></div>
@@ -315,141 +317,183 @@
                 connected: "● Connesso", welcome: "Benvenuto", tagline: "Il tuo concierge digitale.",
                 btn_book: "Welcome Book", btn_book_sub: "Guida e Regole",
                 btn_bar: "Frigobar", btn_bar_sub: "Vini & Snack",
-                btn_art: "Art Gallery", btn_art_sub: "Esplora la collezione privata",
+                btn_art: "Art Gallery", btn_art_sub: "Esplora la collezione della Suite",
                 btn_guest: "Guestbook", btn_guest_sub: "Lascia il tuo segno nel mondo",
                 btn_tours: "Escursioni", btn_tours_sub: "Tour in Auto",
-                btn_boat: "Gite in Barca", btn_boat_sub: "Mare & Relax",
+                btn_boat: "Barca", btn_boat_sub: "Boat Tours",
                 btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
-                                
-                tours_title: "Tour in Auto", tours_subtitle: "Servizio autista privato. L'autista accompagna e attende in auto.",
-                boat_title: "Escursioni in Barca", boat_subtitle: "Scopri la costa siciliana.",
-                taxi_title: "Servizio Taxi", taxi_desc: "Disponibile anche per corse in città.",
+                tours_title: "Esplora la Sicilia", tours_subtitle: "Servizio autista privato. L'autista attende in auto.",
+                boat_title: "Tour in Barca", boat_subtitle: "Scopri la costa dal mare. Skipper privato.",
+                taxi_title: "Taxi Service", taxi_desc: "Disponibile anche per corse in città.",
                 taxi_offer_title: "Transfer Aeroporto (PMO)",
                 taxi_offer_desc: "Tariffa convenzionata per i nostri ospiti. Più conveniente dei taxi pubblici. Zero stress, massima puntualità.",
                 taxi_night_title: "Servizio Notturno (22:00 - 06:00)",
-
                 btn_chat_tour: "Prenota Auto", btn_chat_boat: "Prenota Barca", btn_chat_taxi: "Richiedi Taxi",
                 cash_only_warning: "PAGAMENTO SOLO CONTANTI AL PARTNER",
-                external_service_desc: "Servizio esterno erogato da partner di fiducia.",
-                logout: "Disconnetti Wi-Fi",
-                follow_us: "SEGUICI SUI SOCIAL",
-                
+                external_service_desc: "Servizio esterno partner.",
+                logout: "Disconnetti Wi-Fi", follow_us: "SEGUICI SUI SOCIAL",
                 wa_msg_tour: "Salve, vorrei informazioni per prenotare un Tour in Auto.",
                 wa_msg_boat: "Salve, vorrei informazioni per un Tour in Barca.",
                 wa_msg_taxi: "Salve, vorrei prenotare un Taxi/Transfer.",
-
-                // ITINERARI
                 tour1_title: "1° Itinerario: Palermo e dintorni", 
-                tour1_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Cattedrale di Palermo (30 min - visita libera)<br>• 2° Sosta: Palazzo dei Normanni e Cappella Palatina (45 min - visita libera)<br>• 3° Sosta: Monreale e Cattedrale UNESCO (1 ora)<br>• 4° Sosta: Santuario Santa Rosalia e Belvedere (40 min)<br>• Rientro panoramico.<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
-
+                tour1_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Cattedrale di Palermo (30 min)<br>• 2° Sosta: Palazzo dei Normanni (45 min)<br>• 3° Sosta: Monreale e Cattedrale UNESCO (1 ora)<br>• 4° Sosta: Santuario Santa Rosalia e Belvedere (40 min)<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
                 tour2_title: "2° Itinerario: Spiagge e Panorami", 
-                tour2_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Spiaggia di Mondello (1 ora). Passeggiata libera.<br>• 2° Sosta: Riserva Capo Gallo (20 min). Sosta panoramica.<br>• 3° Sosta: Sferracavallo (45 min). Borgo marinaro + gelato offerto.<br>• Rientro attraverso il Parco della Favorita.<br><br><em>Tariffa: €130 (fino a 4 persone).</em>",
-
+                tour2_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Spiaggia di Mondello (1 ora)<br>• 2° Sosta: Riserva Capo Gallo (20 min)<br>• 3° Sosta: Sferracavallo (45 min) + gelato offerto.<br><br><em>Tariffa: €130 (fino a 4 persone).</em>",
                 tour3_title: "3° Itinerario: Monumenti e Mercati", 
-                tour3_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Mercato Ballarò o Capo (45 min). Visita libera.<br>• 2° Sosta: Quattro Canti e P.zza Pretoria (30 min).<br>• 3° Sosta: Chiesa del Gesù/Casa Professa (40 min). Visita indipendente.<br>• Rientro con sosta foto al Teatro Massimo.<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
-
+                tour3_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Mercato Ballarò o Capo (45 min)<br>• 2° Sosta: Quattro Canti e P.zza Pretoria (30 min)<br>• 3° Sosta: Chiesa del Gesù/Casa Professa (40 min)<br><br><em>Tariffa: €120 (fino a 4 persone, biglietti esclusi).</em>",
                 tour4_title: "4° Itinerario: Catacombe e Storia", 
-                tour4_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Catacombe dei Cappuccini (45 min). L'autista attende fuori.<br>• 2° Sosta: Cattedrale di Palermo (30 min). Visita libera.<br>• 3° Sosta: Palazzo dei Normanni e Cappella Palatina (45 min).<br>• Rientro panoramico via Foro Italico.<br><br><em>Tariffa: €130 (fino a 4 persone, biglietti esclusi).</em>",
-
+                tour4_desc: "<strong>Partenza 09:00 - Rientro 13:00</strong><br><br>• 1° Sosta: Catacombe dei Cappuccini (45 min)<br>• 2° Sosta: Cattedrale di Palermo (30 min)<br>• 3° Sosta: Palazzo dei Normanni e Cappella Palatina (45 min)<br><br><em>Tariffa: €130 (fino a 4 persone, biglietti esclusi).</em>",
                 tour5_title: "5° Itinerario: Tour di Cefalù", 
-                tour5_desc: "<strong>Partenza 09:00 (Flessibile)</strong><br>Trasferimento di 1 ora circa.<br><br>• 1° Sosta: Cattedrale UNESCO e Mosaici (45 min - visita libera).<br>• 2° Sosta: Centro storico e Lungomare (60 min). Passeggiata autonoma.<br>• 3° Sosta: Lavatoio Medievale (15 min).<br>• Rientro panoramico lungo la costa.<br><br><em>Tariffa: €170 (fino a 4 persone, biglietti esclusi).</em>",
-
-                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Partenza 09:30</strong><br> Uscita dal porto della Cala in direzione Mondello .<br><br>• 1° Sosta ore 10.00: Vergine Maria (sosta bagno - 30 min), salatini e stuzzichini.<br>• 2° Sosta ore 11.15: Mondello (sosta bagno - 45 min), verranno servite bruschette tipiche siciliane accompagnate da calice di vino bianco Siciliano.<br>• 3° Sosta ore 12.20: Grotte della Regina (sosta bagno - 20 min) degustazione di un buon gelato artigianale accompagnato da una Brioche.<br>• Rientro panoramico lungo la costa ore 13.30.<br><br><em>Tariffa: €100 (per persona).</em>",
-                boat2_title: "Aperitivo al Tramonto", boat2_desc: "<strong>Partenza:</strong> 18:30<br>Prosecco e stuzzichini inclusi."
+                tour5_desc: "<strong>Partenza 09:00 (Flessibile)</strong><br>Trasferimento di 1 ora circa.<br><br>• 1° Sosta: Cattedrale UNESCO e Mosaici (45 min)<br>• 2° Sosta: Centro storico e Lungomare (60 min)<br>• 3° Sosta: Lavatoio Medievale (15 min)<br><br><em>Tariffa: €170 (fino a 4 persone, biglietti esclusi).</em>",
+                boat1_title: "Mezza Giornata Mondello & Capo Gallo", boat1_desc: "<strong>Partenza 09:30</strong><br>Uscita dal porto della Cala in direzione Mondello.<br><br>• 1° Sosta: Vergine Maria (bagno + stuzzichini)<br>• 2° Sosta: Mondello (bagno + bruschette e vino bianco)<br>• 3° Sosta: Grotte della Regina (bagno + gelato artigianale e brioche)<br><br><em>Tariffa: €100 (per persona).</em>",
+                boat2_title: "Intera Giornata Mondello & Capo Gallo", boat2_desc: "<strong>Partenza:</strong> 18:30<br>Prosecco e stuzzichini inclusi."
             },
             en: {
                 connected: "● Connected", welcome: "Welcome", tagline: "Your digital concierge.",
                 btn_book: "Welcome Book", btn_book_sub: "Guide & Rules",
                 btn_bar: "Minibar", btn_bar_sub: "Wines & Snacks",
-                btn_art: "Art Gallery", btn_art_sub: "Discover the Art Collection",
-                btn_guest: "Guestbook", btn_guest_sub: "Pin your location & leave a memory",
+                btn_art: "Art Gallery", btn_art_sub: "Discover the Suite's collection",
+                btn_guest: "Guestbook", btn_guest_sub: "Leave your mark on the world",
                 btn_tours: "Excursions", btn_tours_sub: "Private Car Tours",
                 btn_boat: "Boat Tours", btn_boat_sub: "Sea & Relax",
                 btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
-                
-                tours_title: "Car Tours", tours_subtitle: "Private driver service. Driver waits in the car during stops.",
-                boat_title: "Boat Excursions", boat_subtitle: "Discover the Sicilian coast.",
+                tours_title: "Explore Sicily", tours_subtitle: "Private driver service. The driver waits in the car.",
+                boat_title: "Boat Tours", boat_subtitle: "Discover the coast from the sea. Private skipper.",
                 taxi_title: "Taxi Service", taxi_desc: "Also available for city rides.",
                 taxi_offer_title: "Airport Transfer (PMO)",
-                taxi_offer_desc: "Exclusive flat rate for guests. Cheaper than public taxis. Stress-free & punctual.",
-                taxi_night_title: "Night Service (10 PM - 6 AM)",
-
-                btn_chat_tour: "Book Car Tour", btn_chat_boat: "Book Boat Tour", btn_chat_taxi: "Request Taxi",
+                taxi_offer_desc: "Exclusive flat rate for our guests. Cheaper than public taxis. Zero stress, maximum punctuality.",
+                taxi_night_title: "Night Service (22:00 - 06:00)",
+                btn_chat_tour: "Book Car", btn_chat_boat: "Book Boat", btn_chat_taxi: "Request Taxi",
                 cash_only_warning: "CASH PAYMENT ONLY TO THE PARTNER",
-                external_service_desc: "External service provided by trusted partners.",
-                logout: "Disconnect Wi-Fi",
-                follow_us: "FOLLOW US ON SOCIAL",
-
-                wa_msg_tour: "Hello, I would like to book a Private Car Tour.",
-                wa_msg_boat: "Hello, I would like to book a Boat Tour.",
-                wa_msg_taxi: "Hello, I would like to request a Taxi/Transfer.",
-
-                tour1_title: "Itinerary 1: Palermo & Surroundings", 
-                tour1_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Palermo Cathedral (30 min - self-guided)<br>• 2nd Stop: Norman Palace (45 min - self-guided)<br>• 3rd Stop: Monreale UNESCO Cathedral (1 hr)<br>• 4th Stop: St. Rosalia Sanctuary (40 min)<br>• Scenic drive back.<br><br><em>Price: €120 (up to 4 people, tickets excluded).</em>",
-
-                tour2_title: "Itinerary 2: Beaches & Coast", 
-                tour2_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Mondello Beach (1 hr). Free walk.<br>• 2nd Stop: Capo Gallo Reserve (20 min). Scenic stop.<br>• 3rd Stop: Sferracavallo (45 min). Fishing village + complimentary gelato.<br>• Return via Favorita Park.<br><br><em>Price: €130 (up to 4 people).</em>",
-
+                external_service_desc: "External partner service.",
+                logout: "Disconnect Wi-Fi", follow_us: "FOLLOW US ON SOCIAL",
+                wa_msg_tour: "Hello, I would like information to book a Car Tour.",
+                wa_msg_boat: "Hello, I would like information for a Boat Tour.",
+                wa_msg_taxi: "Hello, I would like to book a Taxi/Transfer.",
+                tour1_title: "Itinerary 1: Palermo & surroundings", 
+                tour1_desc: "<strong>Departure 09:00 - Return 13:00</strong><br><br>• 1st Stop: Palermo Cathedral (30 min)<br>• 2nd Stop: Norman Palace (45 min)<br>• 3rd Stop: Monreale UNESCO Cathedral (1 hour)<br>• 4th Stop: Santa Rosalia Sanctuary (40 min)<br><br><em>Rate: €120 (up to 4 people, tickets excluded).</em>",
+                tour2_title: "Itinerary 2: Beaches & Panoramas", 
+                tour2_desc: "<strong>Departure 09:00 - Return 13:00</strong><br><br>• 1st Stop: Mondello Beach (1 hour)<br>• 2nd Stop: Capo Gallo Reserve (20 min)<br>• 3rd Stop: Sferracavallo (45 min) + free gelato.<br><br><em>Rate: €130 (up to 4 people).</em>",
                 tour3_title: "Itinerary 3: Monuments & Markets", 
-                tour3_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Ballarò or Capo Market (45 min). Self-guided.<br>• 2nd Stop: Quattro Canti & Pretoria Fountain (30 min).<br>• 3rd Stop: Casa Professa Church (40 min). Independent visit.<br>• Photo stop at Teatro Massimo.<br><br><em>Price: €120 (up to 4 people, tickets excluded).</em>",
-
+                tour3_desc: "<strong>Departure 09:00 - Return 13:00</strong><br><br>• 1st Stop: Ballarò or Capo Market (45 min)<br>• 2nd Stop: Quattro Canti & Pretoria Square (30 min)<br>• 3rd Stop: Gesu Church/Casa Professa (40 min)<br><br><em>Rate: €120 (up to 4 people, tickets excluded).</em>",
                 tour4_title: "Itinerary 4: Catacombs & History", 
-                tour4_desc: "<strong>09:00 AM - 01:00 PM</strong><br><br>• 1st Stop: Capuchin Catacombs (45 min). Driver waits outside.<br>• 2nd Stop: Palermo Cathedral (30 min).<br>• 3rd Stop: Norman Palace & Palatine Chapel (45 min).<br>• Scenic return via Foro Italico.<br><br><em>Price: €130 (up to 4 people, tickets excluded).</em>",
-
+                tour4_desc: "<strong>Departure 09:00 - Return 13:00</strong><br><br>• 1st Stop: Capuchin Catacombs (45 min)<br>• 2nd Stop: Palermo Cathedral (30 min)<br>• 3rd Stop: Norman Palace & Palatine Chapel (45 min)<br><br><em>Rate: €130 (up to 4 people, tickets excluded).</em>",
                 tour5_title: "Itinerary 5: Cefalù Tour", 
-                tour5_desc: "<strong>Departure 09:00 AM (Flexible)</strong><br>Approx 1 hour drive.<br><br>• 1st Stop: UNESCO Cathedral & Mosaics (45 min).<br>• 2nd Stop: Historic Center & Seafront (60 min). Self-guided walk.<br>• 3rd Stop: Medieval Washhouse (15 min).<br>• Scenic coastal drive back.<br><br><em>Price: €170 (up to 4 people, tickets excluded).</em>",
-
-                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Start:</strong> 10:00<br>Swimming and snorkeling included.",
-                boat2_title: "Sunset Aperitif", boat2_desc: "<strong>Start:</strong> 18:30<br>Prosecco and snacks included."
+                tour5_desc: "<strong>Departure 09:00 (Flexible)</strong><br>Approx. 1 hour transfer.<br><br>• 1st Stop: UNESCO Cathedral & Mosaics (45 min)<br>• 2nd Stop: Old town & Promenade (60 min)<br>• 3rd Stop: Medieval Washhouse (15 min)<br><br><em>Rate: €170 (up to 4 people, tickets excluded).</em>",
+                boat1_title: "Half Day Mondello & Capo Gallo", boat1_desc: "<strong>Departure 09:30</strong><br>From La Cala port towards Mondello.<br><br>• 1st Stop: Vergine Maria (swim + snacks)<br>• 2nd Stop: Mondello (swim + Sicilian bruschette & white wine)<br>• 3rd Stop: Grotte della Regina (swim + artisanal gelato and brioche)<br><br><em>Rate: €100 (per person).</em>",
+                boat2_title: "Full Day Mondello & Capo Gallo", boat2_desc: "<strong>Departure:</strong> 18:30<br>Prosecco and snacks included."
             },
             fr: {
                 connected: "● Connecté", welcome: "Bienvenue", tagline: "Votre concierge numérique.",
-                btn_book: "Livret d'Accueil", btn_book_sub: "Guide et Règles",
-                btn_bar: "Minibar", btn_bar_sub: "Vins et Snacks",
-                btn_art: "Galerie d'Art", btn_art_sub: "Découvrez la collection",
-                btn_guest: "Livre d'Or", btn_guest_sub: "Marquez votre emplacement",
-                btn_tours: "Excursions", btn_tours_sub: "Tours en Voiture",
-                btn_boat: "Tours en Bateau", btn_boat_sub: "Mer et Détente",
-                btn_taxi: "Taxi", btn_taxi_sub: "Transferts & Ville",
-                
-                tours_title: "Tours en Voiture", tours_subtitle: "Chauffeur privé. Le chauffeur attend dans la voiture.",
-                boat_title: "Excursions en Bateau", boat_subtitle: "Découvrez la côte sicilienne.",
-                taxi_title: "Service Taxi", taxi_desc: "Aussi disponible pour les trajets en ville.",
+                btn_book: "Welcome Book", btn_book_sub: "Guide et Règles",
+                btn_bar: "Frigobar", btn_bar_sub: "Vins & Snacks",
+                btn_art: "Art Gallery", btn_art_sub: "Explorez la collection de la Suite",
+                btn_guest: "Guestbook", btn_guest_sub: "Laissez votre empreinte dans le monde",
+                btn_tours: "Excursions", btn_tours_sub: "Tour en Voiture",
+                btn_boat: "Barque", btn_boat_sub: "Boat Tours",
+                btn_taxi: "Taxi & Transfert", btn_taxi_sub: "City & Airport Service",
+                tours_title: "Explorez la Sicile", tours_subtitle: "Service de chauffeur privé. Le chauffeur attend dans la voiture.",
+                boat_title: "Tour en Barque", boat_subtitle: "Découvrez la côte depuis la mer. Skipper privé.",
+                taxi_title: "Service de Taxi", taxi_desc: "Disponible également pour des courses en ville.",
                 taxi_offer_title: "Transfert Aéroport (PMO)",
-                taxi_offer_desc: "Tarif fixe exclusif pour nos clients. Moins cher que les taxis publics. Zéro stress, ponctualité maximale.",
-                taxi_night_title: "Service de Nuit (22h00 - 06h00)",
-
-                btn_chat_tour: "Réserver Voiture", btn_chat_boat: "Réserver Bateau", btn_chat_taxi: "Commander Taxi",
-                cash_only_warning: "PAIEMENT EN ESPÈCES AU PARTENAIRE",
-                external_service_desc: "Service externe fourni par des partenaires.",
-                logout: "Déconnexion Wi-Fi",
-                follow_us: "SUIVEZ-NOUS",
-
-                wa_msg_tour: "Bonjour, je voudrais réserver un Tour en Voiture.",
-                wa_msg_boat: "Bonjour, je voudrais réserver un Tour en Bateau.",
-                wa_msg_taxi: "Bonjour, je voudrais commander un Taxi/Transfert.",
-
-                tour1_title: "Itinéraire 1: Palerme et ses environs", 
-                tour1_desc: "<strong>09h00 - 13h00</strong><br><br>• 1er Arrêt: Cathédrale de Palerme (30 min - visite libre)<br>• 2e Arrêt: Palais des Normands (45 min - visite libre)<br>• 3e Arrêt: Cathédrale de Monreale (1 h)<br>• 4e Arrêt: Sanctuaire Santa Rosalia (40 min)<br>• Retour panoramique.<br><br><em>Prix: €120 (jusqu'à 4 personnes, billets exclus).</em>",
-
-                tour2_title: "Itinéraire 2: Plages et Panoramas", 
-                tour2_desc: "<strong>09h00 - 13h00</strong><br><br>• 1er Arrêt: Plage de Mondello (1 h). Promenade libre.<br>• 2e Arrêt: Réserve Capo Gallo (20 min). Falaises.<br>• 3e Arrêt: Sferracavallo (45 min). Village de pêcheurs + glace offerte.<br>• Retour par le Parc della Favorita.<br><br><em>Prix: €130 (jusqu'à 4 personnes).</em>",
-
-                tour3_title: "Itinéraire 3: Monuments et Marchés", 
-                tour3_desc: "<strong>09h00 - 13h00</strong><br><br>• 1er Arrêt: Marché Ballarò ou Capo (45 min). Visite libre.<br>• 2e Arrêt: Quattro Canti & Fontaine Pretoria (30 min).<br>• 3e Arrêt: Église Casa Professa (40 min). Visite indépendante.<br>• Arrêt photo au Teatro Massimo.<br><br><em>Prix: €120 (jusqu'à 4 personnes, billets exclus).</em>",
-
-                tour4_title: "Itinéraire 4: Catacombes et Histoire", 
-                tour4_desc: "<strong>09h00 - 13h00</strong><br><br>• 1er Arrêt: Catacombes des Capucins (45 min). Le chauffeur attend dehors.<br>• 2e Arrêt: Cathédrale de Palerme (30 min).<br>• 3e Arrêt: Palais des Normands & Chapelle Palatine (45 min).<br>• Retour via Foro Italico.<br><br><em>Prix: €130 (jusqu'à 4 personnes, billets exclus).</em>",
-
-                tour5_title: "Itinéraire 5: Tour de Cefalù", 
-                tour5_desc: "<strong>Départ 09h00 (Flexible)</strong><br>Env. 1h de route.<br><br>• 1er Arrêt: Cathédrale UNESCO (45 min).<br>• 2e Arrêt: Centre historique & Mer (60 min). Promenade libre.<br>• 3e Arrêt: Lavoir Médiéval (15 min).<br>• Retour panoramique par la côte.<br><br><em>Prix: €170 (jusqu'à 4 personnes, billets exclus).</em>",
-
-                boat1_title: "Mondello & Capo Gallo", boat1_desc: "<strong>Départ:</strong> 10h00<br>Baignade et snorkeling inclus.",
-                boat2_title: "Apéritif au Coucher du Soleil", boat2_desc: "<strong>Départ:</strong> 18h30<br>Prosecco et snacks inclus."
+                taxi_offer_desc: "Tarif conventionné pour nos clients. Plus avantageux che les taxis publics. Zéro stress, ponctualité maximale.",
+                taxi_night_title: "Service Nocturne (22h00 - 06h00)",
+                btn_chat_tour: "Réserver Voiture", btn_chat_boat: "Réserver Barque", btn_chat_taxi: "Demander Taxi",
+                cash_only_warning: "PAIEMENT EN ESPÈCES UNIQUEMENT AU PARTENAIRE",
+                external_service_desc: "Service externe partenaire.",
+                logout: "Déconnecter le Wi-Fi", follow_us: "SUIVEZ-NOUS SUR LES RÉSEAUX",
+                wa_msg_tour: "Bonjour, je voudrais des informations pour réserver un Tour en Voiture.",
+                wa_msg_boat: "Bonjour, je voudrais des informations pour un Tour en Barque.",
+                wa_msg_taxi: "Bonjour, je voudrais réserver un Taxi/Transfert.",
+                tour1_title: "1er Itinéraire: Palerme et ses environs", 
+                tour1_desc: "<strong>Départ 09:00 - Retour 13:00</strong><br><br>• 1er Arrêt: Cathédrale de Palerme (30 min)<br>• 2e Arrêt: Palais des Normands (45 min)<br>• 3e Arrêt: Monreale et Cathédrale UNESCO (1 heure)<br>• 4e Arrêt: Sanctuaire Santa Rosalia et Belvédère (40 min)<br><br><em>Tarif: €120 (jusqu'à 4 personnes, billets non inclus).</em>",
+                tour2_title: "2e Itinéraire: Plages et Panoramas", 
+                tour2_desc: "<strong>Départ 09:00 - Retour 13:00</strong><br><br>• 1er Arrêt: Plage de Mondello (1 heure)<br>• 2e Arrêt: Réserve de Capo Gallo (20 min)<br>• 3e Arrêt: Sferracavallo (45 min) + glace offerte.<br><br><em>Tarif: €130 (jusqu'à 4 personnes).</em>",
+                tour3_title: "3e Itinéraire: Monuments et Marchés", 
+                tour3_desc: "<strong>Départ 09:00 - Retour 13:00</strong><br><br>• 1er Arrêt: Marché de Ballarò ou Capo (45 min)<br>• 2e Arrêt: Quattro Canti et Place Pretoria (30 min)<br>• 3e Arrêt: Église du Gesù/Casa Professa (40 min)<br><br><em>Tarif: €120 (jusqu'à 4 personnes, billets non inclus).</em>",
+                tour4_title: "4e Itinéraire: Catacombes et Histoire", 
+                tour4_desc: "<strong>Départ 09:00 - Retour 13:00</strong><br><br>• 1er Arrêt: Catacombes des Capucins (45 min)<br>• 2e Arrêt: Cathédrale de Palerme (30 min)<br>• 3e Arrêt: Palais des Normands et Chapelle Palatine (45 min)<br><br><em>Tarif: €130 (jusqu'à 4 personnes, billets non inclus).</em>",
+                tour5_title: "5e Itinéraire: Visite de Cefalù", 
+                tour5_desc: "<strong>Départ 09:00 (Flexible)</strong><br>Environ 1 heure de transfert.<br><br>• 1er Arrêt: Cathédrale UNESCO et Mosaïques (45 min)<br>• 2e Arrêt: Centre historique et Front de mer (60 min)<br>• 3e Arrêt: Lavoir Médiéval (15 min)<br><br><em>Tarif: €170 (jusqu'à 4 personnes, billets non inclus).</em>",
+                boat1_title: "Demi-journée Mondello & Capo Gallo", boat1_desc: "<strong>Départ 09:30</strong><br>Sortie du port de La Cala en direction de Mondello.<br><br>• 1er Arrêt: Vergine Maria (baignade + collations)<br>• 2e Arrêt: Mondello (baignade + brusquettes siciliennes & vin blanc)<br>• 3e Arrêt: Grotte della Regina (baignade + glace artisanale et brioche)<br><br><em>Tarif: €100 (par personne).</em>",
+                boat2_title: "Journée Complète Mondello & Capo Gallo", boat2_desc: "<strong>Départ:</strong> 18:30<br>Prosecco et collations inclus."
+            },
+            es: {
+                connected: "● Conectado", welcome: "Bienvenido", tagline: "Tu conserje digital.",
+                btn_book: "Welcome Book", btn_book_sub: "Guía y Reglas",
+                btn_bar: "Minibar", btn_bar_sub: "Vinos y Snacks",
+                btn_art: "Art Gallery", btn_art_sub: "Explora la colección de la Suite",
+                btn_guest: "Guestbook", btn_guest_sub: "Deja tu huella en el mundo",
+                btn_tours: "Excursiones", btn_tours_sub: "Tour en Coche",
+                btn_boat: "Barco", btn_boat_sub: "Boat Tours",
+                btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
+                tours_title: "Explora Sicilia", tours_subtitle: "Servicio de chófer privado. El chófer espera en el coche.",
+                boat_title: "Tour en Barco", boat_subtitle: "Descubre la costa desde el mar. Patrón privado.",
+                taxi_title: "Servicio de Taxi", taxi_desc: "Disponible también para trayectos en la ciudad.",
+                taxi_offer_title: "Transfer Aeropuerto (PMO)",
+                taxi_offer_desc: "Tarifa concertada para nuestros huéspedes. Más económico que los taxis públicos. Cero estrés, máxima puntualidad.",
+                taxi_night_title: "Servicio Nocturno (22:00 - 06:00)",
+                btn_chat_tour: "Reservar Coche", btn_chat_boat: "Reservar Barco", btn_chat_taxi: "Solicitar Taxi",
+                cash_only_warning: "PAGO SOLO EN EFECTIVO AL SOCIO",
+                external_service_desc: "Servicio externo asociado.",
+                logout: "Desconectar Wi-Fi", follow_us: "SÍGUENOS EN REDES SOCIALES",
+                wa_msg_tour: "Hola, me gustaría información para reservar un Tour en Coche.",
+                wa_msg_boat: "Hola, me gustaría información para un Tour en Barco.",
+                wa_msg_taxi: "Hola, me gustaría reservar un Taxi/Transfer.",
+                tour1_title: "1° Itinerario: Palermo y alrededores", 
+                tour1_desc: "<strong>Salida 09:00 - Regreso 13:00</strong><br><br>• 1° Parada: Catedral de Palermo (30 min)<br>• 2° Parada: Palacio de los Normandos (45 min)<br>• 3° Parada: Monreale y Catedral de la UNESCO (1 hora)<br>• 4° Parada: Santuario de Santa Rosalia y Mirador (40 min)<br><br><em>Tarifa: €120 (hasta 4 personas, entradas no incluidas).</em>",
+                tour2_title: "2° Itinerario: Playas y Vistas", 
+                tour2_desc: "<strong>Salida 09:00 - Regreso 13:00</strong><br><br>• 1° Parada: Playa de Mondello (1 hora)<br>• 2° Parada: Reserva Capo Gallo (20 min)<br>• 3° Parada: Sferracavallo (45 min) + helado de cortesía.<br><br><em>Tarifa: €130 (hasta 4 personas).</em>",
+                tour3_title: "3° Itinerario: Monumentos y Mercados", 
+                tour3_desc: "<strong>Salida 09:00 - Regreso 13:00</strong><br><br>• 1° Parada: Mercado de Ballarò o Capo (45 min)<br>• 2° Parada: Quattro Canti y Plaza Pretoria (30 min)<br>• 3° Parada: Iglesia del Gesù/Casa Professa (40 min)<br><br><em>Tarifa: €120 (hasta 4 personas, entradas no incluidas).</em>",
+                tour4_title: "4° Itinerario: Catacumbas e Historia", 
+                tour4_desc: "<strong>Salida 09:00 - Regreso 13:00</strong><br><br>• 1° Parada: Catacumbas de los Capuchinos (45 min)<br>• 2° Parada: Catedral de Palermo (30 min)<br>• 3° Parada: Palacio de los Normandos y Capilla Palatina (45 min)<br><br><em>Tarifa: €130 (hasta 4 personas, entradas no incluidas).</em>",
+                tour5_title: "5° Itinerario: Tour de Cefalú", 
+                tour5_desc: "<strong>Salida 09:00 (Flexible)</strong><br>Trayecto de 1 hora aprox.<br><br>• 1° Parada: Catedral UNESCO y Mosaicos (45 min)<br>• 2° Parada: Centro histórico y Paseo marítimo (60 min)<br>• 3° Parada: Lavadero Medieval (15 min)<br><br><em>Tarifa: €170 (hasta 4 personas, entradas no incluidas).</em>",
+                boat1_title: "Medio Día Mondello & Capo Gallo", boat1_desc: "<strong>Salida 09:30</strong><br>Salida del puerto de La Cala hacia Mondello.<br><br>• 1° Parada: Vergine Maria (baño + aperitivos)<br>• 2° Parada: Mondello (baño + bruschettas sicilianas y vino blanco)<br>• 3° Parada: Grotte della Regina (baño + helado artesanal con brioche)<br><br><em>Tarifa: €100 (por persona).</em>",
+                boat2_title: "Día Completo Mondello & Capo Gallo", boat2_desc: "<strong>Salida:</strong> 18:30<br>Prosecco y aperitivos incluidos."
+            },
+            de: {
+                connected: "● Verbunden", welcome: "Willkommen", tagline: "Ihr digitaler Concierge.",
+                btn_book: "Welcome Book", btn_book_sub: "Anleitung & Regeln",
+                btn_bar: "Minibar", btn_bar_sub: "Weine & Snacks",
+                btn_art: "Art Gallery", btn_art_sub: "Entdecken Sie die Sammlung der Suite",
+                btn_guest: "Guestbook", btn_guest_sub: "Hinterlassen Sie Ihren Eindruck in der Welt",
+                btn_tours: "Ausflüge", btn_tours_sub: "Autotouren",
+                btn_boat: "Boot", btn_boat_sub: "Boat Tours",
+                btn_taxi: "Taxi & Transfer", btn_taxi_sub: "City & Airport Service",
+                tours_title: "Sizilien erkunden", tours_subtitle: "Privater Fahrerservice. Der Fahrer wartet im Auto.",
+                boat_title: "Bootstouren", boat_subtitle: "Entdecken Sie die Küste vom Meer aus. Privater Skipper.",
+                taxi_title: "Taxi Service", taxi_desc: "Auch für Stadtfahrten verfügbar.",
+                taxi_offer_title: "Flughafentransfer (PMO)",
+                taxi_offer_desc: "Sonderpreis für unsere Gäste. Günstiger als öffentliche Taxis. Null Stress, maximale Pünktlichkeit.",
+                taxi_night_title: "Nachtzuschlag (22:00 - 06:00)",
+                btn_chat_tour: "Auto buchen", btn_chat_boat: "Boot buchen", btn_chat_taxi: "Taxi anfordern",
+                cash_only_warning: "NUR BARZAHLUNG BEIM PARTNER",
+                external_service_desc: "Externer Partnerservice.",
+                logout: "Wi-Fi trennen", follow_us: "FOLGEN SIE UNS AUF SOCIAL MEDIA",
+                wa_msg_tour: "Guten Tag, ich hätte gerne Informationen zur Buchung einer Autotour.",
+                wa_msg_boat: "Guten Tag, ich hätte gerne Informationen für eine Bootstour.",
+                wa_msg_taxi: "Guten Tag, ich möchte ein Taxi/Transfer buchen.",
+                tour1_title: "1. Route: Palermo und Umgebung", 
+                tour1_desc: "<strong>Abfahrt 09:00 - Rückkehr 13:00</strong><br><br>• 1. Stopp: Kathedrale von Palermo (30 Min.)<br>• 2. Stopp: Normannenpalast (45 Min.)<br>• 3. Stopp: Monreale und UNESCO-Kathedrale (1 Std.)<br>• 4. Stopp: Heiligtum Santa Rosalia und Aussichtspunkt (40 Min.)<br><br><em>Preis: €120 (bis zu 4 Personen, Tickets nicht enthalten).</em>",
+                tour2_title: "2. Route: Strände und Panoramen", 
+                tour2_desc: "<strong>Abfahrt 09:00 - Rückkehr 13:00</strong><br><br>• 1. Stopp: Strand von Mondello (1 Std.)<br>• 2. Stopp: Naturschutzgebiet Capo Gallo (20 Min.)<br>• 3. Stopp: Sferracavallo (45 Min.) + gratis Gelato.<br><br><em>Preis: €130 (bis zu 4 Personen).</em>",
+                tour3_title: "3. Route: Denkmäler und Märkte", 
+                tour3_desc: "<strong>Abfahrt 09:00 - Rückkehr 13:00</strong><br><br>• 1. Stopp: Ballarò- oder Capo-Markt (45 Min.)<br>• 2. Stopp: Quattro Canti und Piazza Pretoria (30 Min.)<br>• 3. Stopp: Gesù-Kirche/Casa Professa (40 Min.)<br><br><em>Preis: €120 (bis zu 4 Personen, Tickets nicht enthalten).</em>",
+                tour4_title: "4. Route: Katakomben und Geschichte", 
+                tour4_desc: "<strong>Abfahrt 09:00 - Rückkehr 13:00</strong><br><br>• 1. Stopp: Kapuzinergruft (45 Min.)<br>• 2. Stopp: Kathedrale von Palermo (30 Min.)<br>• 3. Stopp: Normannenpalast und Palatinische Kapelle (45 Min.)<br><br><em>Preis: €130 (bis zu 4 Personen, Tickets nicht enthalten).</em>",
+                tour5_title: "5. Route: Cefalù-Tour", 
+                tour5_desc: "<strong>Abfahrt 09:00 (Flexibel)</strong><br>Ca. 1 Stunde Fahrt.<br><br>• 1. Stopp: UNESCO-Kathedrale & Mosaike (45 Min.)<br>• 2. Stopp: Altstadt & Strandpromenade (60 Min.)<br>• 3. Stopp: Mittelalterliches Waschhaus (15 Min.)<br><br><em>Preis: €170 (bis zu 4 Personen, Tickets nicht enthalten).</em>",
+                boat1_title: "Halber Tag Mondello & Capo Gallo", boat1_desc: "<strong>Abfahrt 09:30</strong><br>Vom Hafen La Cala Richtung Mondello.<br><br>• 1. Stopp: Vergine Maria (Badestopp + Snacks)<br>• 2. Stopp: Mondello (Badestopp + sizilianische Bruschette & Weißwein)<br>• 3. Stopp: Grotte della Regina (Badestopp + handgemachtes Gelato mit Brioche)<br><br><em>Preis: €100 (pro Person).</em>",
+                boat2_title: "Ganzer Tag Mondello & Capo Gallo", boat2_desc: "<strong>Abfahrt:</strong> 18:30<br>Prosecco und Snacks inklusive."
             }
         };
 
         function setLanguage(lang) {
+            // Aggiorna l'attributo lang del documento
+            document.documentElement.lang = lang;
+
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) element.innerHTML = translations[lang][key];
@@ -461,13 +505,14 @@
             document.getElementById('wa-btn-taxi').href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t.wa_msg_taxi)}`;
 
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+            const activeBtn = document.getElementById(`btn-lang-${lang}`);
+            if(activeBtn) activeBtn.classList.add('active');
         }
 
+        // Rilevamento automatico della lingua del browser
         const userLang = navigator.language.substring(0, 2);
+        // Se la lingua dell'utente è tra quelle supportate usala, altrimenti usa l'inglese 'en'
         setLanguage(translations[userLang] ? userLang : 'en');
-        </script>
+    </script>
 </body>
 </html>
-
-
